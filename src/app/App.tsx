@@ -50,7 +50,6 @@ export default function App() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [showStartMenu, setShowStartMenu] = useState(false);
   const [showMascot, setShowMascot] = useState(false);
-  const [gameDifficulty, setGameDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
 
   const [showAccuseModal, setShowAccuseModal] = useState(false);
   const [accuseInput, setAccuseInput] = useState('');
@@ -310,19 +309,14 @@ export default function App() {
       const nextCase = cases[currentCaseIndex + 1];
       
       if (nextCase) {
-        // Determine the difficulty of the next case
-        const difficultyMap: { [key: number]: 'easy' | 'medium' | 'hard' } = { 1: 'easy', 2: 'medium', 3: 'hard' };
-        const nextDifficulty = difficultyMap[nextCase.difficulty] || 'medium';
-        
         // Reset all game state and show boot sequence before loading next case
         setWindows([]);
         setCaseStarted(false);
         setQueryResults(null);
         setAccusedSuspect('');
         setIsCorrect(false);
-        setSelectedCase(nextCase); // Pre-select the next case
-        setGameDifficulty(nextDifficulty); // Set difficulty to match next case
-        setGameStarted(false); // Go back to home screen state
+        setSelectedCase(nextCase);
+        setGameStarted(false);
         
         // Show boot sequence after a brief delay
         setTimeout(() => {
@@ -355,9 +349,7 @@ export default function App() {
     setGameStarted(false);
   };
 
-  const handleHomeScreenStart = (caseId: string | null, difficulty: 'easy' | 'medium' | 'hard') => {
-    setGameDifficulty(difficulty);
-    
+  const handleHomeScreenStart = (caseId: string) => {
     // Stop background music during boot sequence
     stopBackgroundMusic();
 
@@ -365,12 +357,10 @@ export default function App() {
     playBootSound();
     setShowBootSequence(true);
     
-    if (caseId) {
-      // User selected a specific case
-      const caseData = cases.find(c => c.id === caseId);
-      if (caseData) {
-        setSelectedCase(caseData);
-      }
+    // User selected a specific case
+    const caseData = cases.find(c => c.id === caseId);
+    if (caseData) {
+      setSelectedCase(caseData);
     }
   };
 
@@ -461,9 +451,9 @@ export default function App() {
       case 'webBrowser':
         return <WebBrowser />;
       case 'pythonManual':
-        return <ManualViewer type="python" currentCase={selectedCase} difficulty={gameDifficulty} />;
+        return <ManualViewer type="python" currentCase={selectedCase} />;
       case 'sqlManual':
-        return <ManualViewer type="sql" currentCase={selectedCase} difficulty={gameDifficulty} />;
+        return <ManualViewer type="sql" currentCase={selectedCase} />;
       case 'notepad':
         return <Notepad />;
       case 'settings':
@@ -575,8 +565,8 @@ export default function App() {
         />
       )}
 
-      {/* Police Mascot - Only show for case level 1 */}
-      {showMascot && selectedCase && selectedCase.difficulty === 1 && (
+      {/* Police Mascot - Only show for first case */}
+      {showMascot && selectedCase && selectedCase.id === 'case-001' && (
         <PoliceMascot onClose={() => setShowMascot(false)} currentCase={selectedCase} />
       )}
 
