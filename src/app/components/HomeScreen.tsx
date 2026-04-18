@@ -60,7 +60,8 @@ export function HomeScreen({ cases, completedCases, onStart, onOpenManual }: Hom
   // Main difficulty selection screen
   if (!selectedDifficulty) {
     return (
-      <div className="fixed inset-0 bg-[#000080] flex items-center justify-center overflow-y-auto py-8">
+      <div className="fixed inset-0 bg-[#000080] overflow-y-auto">
+        <div className="flex min-h-full items-center justify-center py-8">
         {/* Retro animated background */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -177,6 +178,7 @@ export function HomeScreen({ cases, completedCases, onStart, onOpenManual }: Hom
             <p className="mt-1 text-yellow-300">Powered by CATCHtech Systems</p>
           </div>
         </div>
+        </div>
       </div>
     );
   }
@@ -186,7 +188,8 @@ export function HomeScreen({ cases, completedCases, onStart, onOpenManual }: Hom
   const settings = difficultySettings[selectedDifficulty];
 
   return (
-    <div className="fixed inset-0 bg-[#000080] flex items-center justify-center overflow-y-auto py-8">
+    <div className="fixed inset-0 bg-[#000080] overflow-y-auto">
+      <div className="flex min-h-full items-center justify-center py-8">
       {/* Retro animated background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -304,6 +307,7 @@ export function HomeScreen({ cases, completedCases, onStart, onOpenManual }: Hom
         <div className="text-center mt-6 text-white text-sm">
           <p>© 2026 UAE Detective Bureau • CATCHtech Systems</p>
         </div>
+      </div>
       </div>
     </div>
   );
