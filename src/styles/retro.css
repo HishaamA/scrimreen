@@ -1,0 +1,173 @@
+/* Retro OS Styling */
+.window-95 {
+  background-color: #c0c0c0;
+  border-width: 2px;
+  box-shadow: inset 1px 1px 0px 0px #fff, inset 2px 2px 0px 0px #dfdfdf, inset -1px -1px 0px 0px #808080, inset -2px -2px 0px 0px #000;
+}
+
+.window-95-titlebar {
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: white;
+  font-weight: bold;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+  user-select: none;
+}
+
+.window-95-button {
+  background-color: #c0c0c0;
+  border-width: 2px;
+  box-shadow: inset -1px -1px 0px 0px #000, inset 1px 1px 0px 0px #fff, inset -2px -2px 0px 0px #808080, inset 2px 2px 0px 0px #dfdfdf;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.window-95-button:hover {
+  background-color: #d4d4d4;
+}
+
+.window-95-button:active {
+  box-shadow: inset 1px 1px 0px 0px #000, inset -1px -1px 0px 0px #fff;
+  padding-top: 0.375rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.875rem;
+  padding-right: 0.625rem;
+}
+
+.window-95-input {
+  background-color: white;
+  border-width: 2px;
+  box-shadow: inset -1px -1px 0px 0px #fff, inset 1px 1px 0px 0px #000, inset -2px -2px 0px 0px #dfdfdf, inset 2px 2px 0px 0px #808080;
+  padding: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 6rem;
+  text-align: center;
+  border: 2px solid transparent;
+  user-select: none;
+}
+
+.desktop-icon:hover {
+  background-color: rgba(0, 0, 128, 0.3);
+  border: 2px dotted #ffffff;
+}
+
+.desktop-icon:active {
+  background-color: rgba(0, 0, 128, 0.5);
+}
+
+.window-95-panel {
+  border-width: 2px;
+  box-shadow: inset 1px 1px 0px 0px #808080, inset -1px -1px 0px 0px #fff;
+  padding: 0.5rem;
+}
+
+.terminal-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #4ade80;
+  background-color: black;
+}
+
+/* Custom scrollbar for retro feel */
+.window-95-scrollbar::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.window-95-scrollbar::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px solid #808080;
+}
+
+.window-95-scrollbar::-webkit-scrollbar-thumb {
+  background: #dfdfdf;
+  border: 2px outset #fff;
+}
+
+.window-95-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e8e8e8;
+}
+
+.window-95-scrollbar::-webkit-scrollbar-corner {
+  background: #c0c0c0;
+}
+
+/* Additional retro patterns */
+.retro-sunburst {
+  background: radial-gradient(circle at center, #00a6a6 0%, #008080 100%);
+}
+
+.retro-pattern {
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.03) 10px, rgba(255,255,255,.03) 20px);
+}
+
+/* Animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+@keyframes swish-minimize {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.1) translateY(calc(100vh - 100px));
+    opacity: 0;
+  }
+}
+
+.animate-swish-minimize {
+  animation: swish-minimize 0.5s ease-in-out forwards;
+  transform-origin: center bottom;
+}
+
+@keyframes progress-bar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress-bar {
+  animation: progress-bar 2.5s ease-in-out forwards;
+}
