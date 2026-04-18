@@ -60,7 +60,7 @@ export function HomeScreen({ cases, completedCases, onStart, onOpenManual }: Hom
   // Main difficulty selection screen
   if (!selectedDifficulty) {
     return (
-      <div className="fixed inset-0 bg-[#000080] flex items-center justify-center overflow-hidden">
+      <div className="fixed inset-0 bg-[#000080] flex items-center justify-center overflow-y-auto py-8">
         {/* Retro animated background */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -186,7 +186,7 @@ export function HomeScreen({ cases, completedCases, onStart, onOpenManual }: Hom
   const settings = difficultySettings[selectedDifficulty];
 
   return (
-    <div className="fixed inset-0 bg-[#000080] flex items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 bg-[#000080] flex items-center justify-center overflow-y-auto py-8">
       {/* Retro animated background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
