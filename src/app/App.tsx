@@ -31,7 +31,7 @@ import { ProcessingWindow } from './components/ProcessingWindow';
 import { CongratsWindow } from './components/CongratsWindow';
 import { WindowState, Case } from './types/game';
 import { cases } from './data/cases';
-import { initGlobalClickSound, playBootSound, stopBackgroundMusic } from './utils/clickSound';
+import { initGlobalClickSound, playBootSound, stopBackgroundMusic, startBackgroundMusic } from './utils/clickSound';
 import '../styles/retro.css';
 
 export default function App() {
@@ -64,7 +64,7 @@ export default function App() {
   // Get valid suspects/culprits based on current case
   const getValidCulprits = () => {
     if (!selectedCase) {
-      return ['Ahmed Khalfan', 'Omar Abdullah']; // Default for case 1 and 2
+      return ['Ahmed Khalfan', 'Simreen Siraj']; // Default for case 1 and 2
     }
     
     // For case-011 (The Midnight Brine), the culprit is a company ID
@@ -326,6 +326,7 @@ export default function App() {
         
         // Show boot sequence after a brief delay
         setTimeout(() => {
+          stopBackgroundMusic();
           playBootSound();
           setShowBootSequence(true);
         }, 500);
@@ -357,6 +358,9 @@ export default function App() {
   const handleHomeScreenStart = (caseId: string | null, difficulty: 'easy' | 'medium' | 'hard') => {
     setGameDifficulty(difficulty);
     
+    // Stop background music during boot sequence
+    stopBackgroundMusic();
+
     // Play boot sound and start boot sequence
     playBootSound();
     setShowBootSequence(true);
@@ -374,6 +378,7 @@ export default function App() {
     setShowBootSequence(false);
     setGameStarted(true);
     setShowMascot(true); // Show mascot after boot
+    startBackgroundMusic();
 
     // If case is selected, open briefing after boot
     if (selectedCase) {

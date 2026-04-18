@@ -111,79 +111,12 @@ export const startBackgroundMusic = () => {
   if (isMusicPlaying) return;
 
   try {
-    const context = initAudioContext();
-    if (context.state === 'suspended') {
-      context.resume().catch(() => {});
-    }
-
-    // Create a simple noir detective ambient background using oscillators
-    const createAmbientLoop = () => {
-      // Bass note
-      const bass = context.createOscillator();
-      const bassGain = context.createGain();
-      bass.type = 'sine';
-      bass.frequency.value = 55; // A1
-      bassGain.gain.value = 0.08;
-      bass.connect(bassGain);
-      bassGain.connect(context.destination);
-
-      // Pad/atmosphere
-      const pad = context.createOscillator();
-      const padGain = context.createGain();
-      pad.type = 'triangle';
-      pad.frequency.value = 220; // A3
-      padGain.gain.value = 0.03;
-      pad.connect(padGain);
-      padGain.connect(context.destination);
-
-      // High ambient
-      const ambient = context.createOscillator();
-      const ambientGain = context.createGain();
-      ambient.type = 'sine';
-      ambient.frequency.value = 440; // A4
-      ambientGain.gain.value = 0.02;
-      ambient.connect(ambientGain);
-      ambientGain.connect(context.destination);
-
-      // Add subtle modulation for movement
-      const lfo = context.createOscillator();
-      const lfoGain = context.createGain();
-      lfo.frequency.value = 0.5;
-      lfoGain.gain.value = 3;
-      lfo.connect(lfoGain);
-      lfoGain.connect(pad.frequency);
-
-      // Start all oscillators
-      try {
-        bass.start();
-      } catch (e) {
-        // Ignore start errors
-      }
-      try {
-        pad.start();
-      } catch (e) {
-        // Ignore start errors
-      }
-      try {
-        ambient.start();
-      } catch (e) {
-        // Ignore start errors
-      }
-      try {
-        lfo.start();
-      } catch (e) {
-        // Ignore start errors
-      }
-
-      return { bass, pad, ambient, lfo, bassGain, padGain, ambientGain, lfoGain };
-    };
-
-    // Create the ambient loop
-    const musicNodes = createAmbientLoop();
+    const audio = new Audio('/audio/bg.mp3');
+    audio.loop = true;
+    audio.volume = 0.3;
+    audio.play().catch(() => {});
     isMusicPlaying = true;
-
-    // Store reference to stop later
-    (window as any).__backgroundMusicNodes = musicNodes;
+    (window as any).__bgMusicAudio = audio;
   } catch (error) {
     // Silently fail - music is optional
   }
@@ -193,34 +126,34 @@ export const stopBackgroundMusic = () => {
   if (!isMusicPlaying) return;
 
   try {
-    const nodes = (window as any).__backgroundMusicNodes;
-    if (nodes) {
-      try {
-        nodes.bass?.stop();
-      } catch (e) {
-        // Already stopped
-      }
-      try {
-        nodes.pad?.stop();
-      } catch (e) {
-        // Already stopped
-      }
-      try {
-        nodes.ambient?.stop();
-      } catch (e) {
-        // Already stopped
-      }
-      try {
-        nodes.lfo?.stop();
-      } catch (e) {
-        // Already stopped
-      }
-      (window as any).__backgroundMusicNodes = null;
+    const audio = (window as any).__bgMusicAudio as HTMLAudioElement | null;
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      (window as any).__bgMusicAudio = null;
     }
     isMusicPlaying = false;
   } catch (error) {
     console.warn('Failed to stop background music:', error);
   }
+};
+
+export const duckBackgroundMusic = () => {
+  try {
+    const audio = (window as any).__bgMusicAudio as HTMLAudioElement | null;
+    if (audio) {
+      audio.volume = 0.03;
+    }
+  } catch (e) {}
+};
+
+export const unduckBackgroundMusic = () => {
+  try {
+    const audio = (window as any).__bgMusicAudio as HTMLAudioElement | null;
+    if (audio) {
+      audio.volume = 0.3;
+    }
+  } catch (e) {}
 };
 
 // Add click sound to all buttons globally via event listener

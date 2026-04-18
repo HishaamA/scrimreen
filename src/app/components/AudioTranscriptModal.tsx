@@ -1,5 +1,6 @@
-import { X } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { X, Play, Pause } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { duckBackgroundMusic, unduckBackgroundMusic } from '../utils/clickSound';
 
 interface AudioTranscriptModalProps {
   isSuccess: boolean;
@@ -9,17 +10,72 @@ interface AudioTranscriptModalProps {
 
 export function AudioTranscriptModal({ isSuccess, onClose, caseId }: AudioTranscriptModalProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Get the audio file for the current case
+  const getAudioSrc = () => {
+    if (caseId === 'case-001' && isSuccess) return '/audio/01end.mp3';
+    if (caseId === 'case-002' && isSuccess) return '/audio/02end.mp3';
+    return isSuccess ? '/audio/success-boss.mp3' : '/audio/failure-boss.mp3';
+  };
 
   useEffect(() => {
-    // Play audio when modal opens
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
+    return () => {
+      // Restore bg music volume on unmount
+      unduckBackgroundMusic();
+    };
   }, []);
+
+  const handlePlay = () => {
+    if (audioRef.current) {
+      duckBackgroundMusic();
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  };
+
+  const handlePause = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+      unduckBackgroundMusic();
+    }
+  };
+
+  const handleAudioEnded = () => {
+    setIsPlaying(false);
+    unduckBackgroundMusic();
+  };
+
+  const handleClose = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    unduckBackgroundMusic();
+    onClose();
+  };
 
   // Case-specific success messages
   const getCaseSuccessMessage = (caseId?: string) => {
     switch (caseId) {
+      case 'case-001':
+        return `*radio crackles*
+
+CHIEF: BRILLIANT WORK, Detective! You cleaned up that corrupted plate data AND tracked down the litterbug!
+
+*hearty laughter*
+
+CHIEF: Ahmed Khalfan thought he could toss construction waste out his window during a sandstorm and nobody would notice? ON THE E11?! We have cameras EVERYWHERE!
+
+*more laughter*
+
+CHIEF: A 50 dirham disposal fee... that's ALL it would have cost him! Now he's looking at a MASSIVE fine and community service picking up trash on the very same highway! Poetic justice!
+
+*chuckles*
+
+CHIEF: Great detective work. The E11 is cleaner because of you. Now, ready for your next case?
+
+*static ends*`;
+
       case 'case-002':
         return `*radio crackles*
 
@@ -27,11 +83,11 @@ CHIEF: OUTSTANDING WORK, Detective! You cracked the Caesar cipher AND tracked do
 
 *hearty laughter*
 
-CHIEF: Omar Abdullah thought he could dump industrial solvent in OUR mangroves and get away with it? NOT ON OUR WATCH! Those flamingos can rest easy tonight!
+CHIEF: Simreen Siraj thought she could dump industrial solvent in OUR mangroves and get away with it? NOT ON OUR WATCH! Those flamingos can rest easy tonight!
 
 *more laughter*
 
-CHIEF: You know what the best part is? He saved 5000 AED but now faces 500,000 AED in fines PLUS jail time! Math genius, that one!
+CHIEF: You know what the best part is? She saved 5000 AED but now faces 500,000 AED in fines PLUS jail time! Math genius, that one!
 
 *chuckles*
 
@@ -102,7 +158,7 @@ CHIEF: Review the evidence again. The real culprit is still out there. Get back 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70">
       {/* Audio element */}
-      <audio ref={audioRef} src={isSuccess ? '/audio/success-boss.mp3' : '/audio/failure-boss.mp3'} />
+      <audio ref={audioRef} src={getAudioSrc()} onEnded={handleAudioEnded} />
       
       {/* Modal Window */}
       <div 
@@ -118,7 +174,7 @@ CHIEF: Review the evidence again. The real culprit is still out there. Get back 
             </span>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="window-95-button w-6 h-6 flex items-center justify-center bg-[#c0c0c0] hover:bg-[#dfdfdf] text-black font-bold"
           >
             <X className="w-4 h-4" />
@@ -138,6 +194,13 @@ CHIEF: Review the evidence again. The real culprit is still out there. Get back 
             <div className="text-green-400 font-mono text-xs">
               CHANNEL: UAEPD-SECURE-01 | ENCRYPTION: AES-256
             </div>
+            <button
+              onClick={isPlaying ? handlePause : handlePlay}
+              className="mt-3 window-95-button px-3 py-1 flex items-center gap-2 bg-[#c0c0c0] hover:bg-[#dfdfdf] text-black text-xs font-bold"
+            >
+              {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+              {isPlaying ? 'Pause Audio' : 'Play Audio'}
+            </button>
           </div>
 
           {/* Transcript */}
@@ -173,7 +236,7 @@ CHIEF: Review the evidence again. The real culprit is still out there. Get back 
         {/* Footer */}
         <div className="p-4 border-t-2 border-[#808080] flex justify-end">
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="window-95-button px-6 py-2 bg-blue-600 text-white font-bold hover:bg-blue-700"
           >
             {isSuccess ? 'PROCEED TO NEXT CASE' : 'BACK TO INVESTIGATION'}

@@ -8,7 +8,7 @@ interface CorporateRecord {
 }
 
 const CORPORATE_REGISTRY: CorporateRecord[] = [
-  { company_id: 'C-101', company_name: 'Gulf Chemicals LLC', ceo_name: 'Omar Abdullah' },
+  { company_id: 'C-101', company_name: 'Gulf Chemicals LLC', ceo_name: 'Simreen Siraj' },
   { company_id: 'C-102', company_name: 'CleanTech Solutions', ceo_name: 'Sarah Al-Mansouri' },
   { company_id: 'C-103', company_name: 'GreenWaste Management', ceo_name: 'Ahmed Khalifa' },
   { company_id: 'C-104', company_name: 'EcoSafe Chemical Co.', ceo_name: 'Fatima Hassan' },

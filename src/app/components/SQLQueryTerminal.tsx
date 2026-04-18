@@ -12,7 +12,7 @@ const DEFAULT_SUSPECTS = [
   { emirates_id: '784-1988-2345678-2', name: 'Fatima Al-Mazrui', age: 35, occupation: 'Business Owner', location: 'Al Reem Island' },
   { emirates_id: '784-1972-3456789-3', name: 'Mohammed Hassan', age: 51, occupation: 'Factory Owner', location: 'Mussafah' },
   { emirates_id: '784-1997-4567890-4', name: 'Sarah Mitchell', age: 29, occupation: 'Environmental Officer', location: 'Dubai Marina' },
-  { emirates_id: '784-1984-5678901-5', name: 'Omar Abdullah', age: 42, occupation: 'Business Owner', location: 'Mussafah Industrial Zone' },
+  { emirates_id: '784-1984-5678901-5', name: 'Simreen Siraj', age: 42, occupation: 'Business Owner', location: 'Mussafah Industrial Zone' },
   { emirates_id: '784-1995-6789012-6', name: 'Layla Ibrahim', age: 28, occupation: 'Shop Manager', location: 'Khalifa City' },
   { emirates_id: '784-1981-7890123-7', name: 'Khalid Al-Mansoori', age: 45, occupation: 'Delivery Driver', location: 'Al Barsha' },
   { emirates_id: '784-1988-8901234-8', name: 'Marina Popov', age: 38, occupation: 'Restaurant Owner', location: 'Jumeirah' },
@@ -23,18 +23,18 @@ const DEFAULT_SUSPECTS = [
 ];
 
 const DEFAULT_VEHICLE_REGISTRY = [
-  { vehicle_plate_id: 'B58912', emirates_id: '784-1992-1234567-1', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:34:00' },
-  { vehicle_plate_id: 'A12345', emirates_id: '784-1988-2345678-2', registration_year: 2022, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 18:12:00' },
-  { vehicle_plate_id: 'C98765', emirates_id: '784-1972-3456789-3', registration_year: 2020, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 18:45:00' },
-  { vehicle_plate_id: 'D54321', emirates_id: '784-1997-4567890-4', registration_year: 2023, colour_of_car: 'Blue', time_passed_under_toll: '2026-03-29 17:58:00' },
-  { vehicle_plate_id: 'E11223', emirates_id: '784-1984-5678901-5', registration_year: 2019, colour_of_car: 'Red', time_passed_under_toll: '2026-03-29 19:02:00' },
-  { vehicle_plate_id: 'F67890', emirates_id: '784-1995-6789012-6', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:23:00' },
-  { vehicle_plate_id: 'G24680', emirates_id: '784-1981-7890123-7', registration_year: 2022, colour_of_car: 'Gray', time_passed_under_toll: '2026-03-29 18:56:00' },
-  { vehicle_plate_id: 'H13579', emirates_id: '784-1988-8901234-8', registration_year: 2020, colour_of_car: 'Green', time_passed_under_toll: '2026-03-29 17:41:00' },
-  { vehicle_plate_id: 'I97531', emirates_id: '784-1978-9012345-9', registration_year: 2023, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 19:15:00' },
-  { vehicle_plate_id: 'J86420', emirates_id: '784-1996-0123456-0', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:07:00' },
-  { vehicle_plate_id: 'S11111', emirates_id: '784-2001-1111111-1', registration_year: 2024, colour_of_car: 'Gold', time_passed_under_toll: '2026-03-29 08:00:00' },
-  { vehicle_plate_id: 'H22222', emirates_id: '784-2000-2222222-2', registration_year: 2024, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 08:15:00' },
+  { vehicle_plate_id: 'B58912', emirates_id: '784-1992-1234567-1', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1834' },
+  { vehicle_plate_id: 'A12345', emirates_id: '784-1988-2345678-2', registration_year: 2022, colour_of_car: 'Black', date: '2026-03-29', time: '1812' },
+  { vehicle_plate_id: 'C98765', emirates_id: '784-1972-3456789-3', registration_year: 2020, colour_of_car: 'Silver', date: '2026-03-29', time: '1845' },
+  { vehicle_plate_id: 'D54321', emirates_id: '784-1997-4567890-4', registration_year: 2023, colour_of_car: 'Blue', date: '2026-03-29', time: '1758' },
+  { vehicle_plate_id: 'E11223', emirates_id: '784-1984-5678901-5', registration_year: 2019, colour_of_car: 'Red', date: '2026-03-29', time: '1902' },
+  { vehicle_plate_id: 'F67890', emirates_id: '784-1995-6789012-6', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1823' },
+  { vehicle_plate_id: 'G24680', emirates_id: '784-1981-7890123-7', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1856' },
+  { vehicle_plate_id: 'H13579', emirates_id: '784-1988-8901234-8', registration_year: 2020, colour_of_car: 'Green', date: '2026-03-29', time: '1741' },
+  { vehicle_plate_id: 'I97531', emirates_id: '784-1978-9012345-9', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1915' },
+  { vehicle_plate_id: 'J86420', emirates_id: '784-1996-0123456-0', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1807' },
+  { vehicle_plate_id: 'S11111', emirates_id: '784-2001-1111111-1', registration_year: 2024, colour_of_car: 'Gold', date: '2026-03-29', time: '0800' },
+  { vehicle_plate_id: 'H22222', emirates_id: '784-2000-2222222-2', registration_year: 2024, colour_of_car: 'Silver', date: '2026-03-29', time: '0815' },
 ];
 
 // Case-002 specific tables
@@ -65,7 +65,7 @@ const FLEET_LOGS = [
 ];
 
 const CORPORATE_REGISTRY = [
-  { company_id: 'C-101', company_name: 'Gulf Chemicals LLC', ceo_name: 'Omar Abdullah' },
+  { company_id: 'C-101', company_name: 'Gulf Chemicals LLC', ceo_name: 'Simreen Siraj' },
   { company_id: 'C-102', company_name: 'CleanTech Solutions', ceo_name: 'Sarah Al-Mansouri' },
   { company_id: 'C-103', company_name: 'GreenWaste Management', ceo_name: 'Ahmed Khalifa' },
   { company_id: 'C-104', company_name: 'EcoSafe Chemical Co.', ceo_name: 'Fatima Hassan' },

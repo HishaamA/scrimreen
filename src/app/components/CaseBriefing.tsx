@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { Play, FileText } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Play, Pause, FileText } from 'lucide-react';
 import { Case } from '../types/game';
+import { duckBackgroundMusic, unduckBackgroundMusic } from '../utils/clickSound';
 
 interface CaseBriefingProps {
   case: Case;
@@ -12,15 +13,45 @@ export function CaseBriefing({ case: caseData, onStart, onMinimize }: CaseBriefi
   const [audioPlayed, setAudioPlayed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showTranscript, setShowTranscript] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const getAudioSrc = (caseId: string) => {
+    switch (caseId) {
+      case 'case-001': return '/audio/case01.mp3';
+      case 'case-002': return '/audio/case02.mp3';
+      default: return null;
+    }
+  };
 
   const handlePlayAudio = () => {
-    setIsPlaying(true);
-    // In a real app, we'd play the audio file here
-    // For now, just mark as played after 3 seconds
-    setTimeout(() => {
-      setAudioPlayed(true);
-      setIsPlaying(false);
-    }, 3000);
+    const src = getAudioSrc(caseData.id);
+    if (src && audioRef.current) {
+      duckBackgroundMusic();
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(() => {});
+    } else {
+      // Fallback for cases without audio files
+      setIsPlaying(true);
+      setTimeout(() => {
+        setAudioPlayed(true);
+        setIsPlaying(false);
+      }, 3000);
+    }
+  };
+
+  const handlePauseAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    setIsPlaying(false);
+    unduckBackgroundMusic();
+  };
+
+  const handleAudioEnded = () => {
+    setIsPlaying(false);
+    setAudioPlayed(true);
+    unduckBackgroundMusic();
   };
 
   // Case-specific transcripts
@@ -34,13 +65,15 @@ For your first case... some absolute maniac just deployed a tactical strike of P
 We have a lead, but the traffic cam's data feed was choked by dust. The raw license plate string is corrupted with garbage data. I just pinged it to your terminal. Clean up that string, isolate the plate number, and query the registry to track down the owner. Ask Officer Chip if you need any help with the syntax. The clock is ticking on a four-century disaster. Good luck, detectives... I have to scram before Sergeant Cheese steals my sandwich again.`;
 
       case 'case-002':
-        return `Alright team, gather 'round. We have a CODE RED situation at Jubail Mangrove Park. Some eco-terrorist backed up a tanker truck in the dead of night and dumped industrial solvent directly into the mangrove root system. Those mangroves are the lungs of Abu Dhabi! They filter the water, protect the coastline, sequester carbon... and now they're choking on chemical waste!
+        return `Alright team, gather 'round. We have a CODE RED situation at Jubail Mangrove Park. Under the cover of darkness, someone backed a tanker truck into the reserve and dumped industrial solvent directly into the mangrove root system. These mangroves are the lungs of Abu Dhabi! They filter the water, protect the coastline, sequester carbon... and now they're choking on chemical waste.
 
-Park Rangers discovered a burner phone dropped in the mud near the dumping site. The phone has an encrypted text message - forensics confirmed it's a Caesar cipher. This message likely contains critical information about the operation, possibly even the company involved. You need to decrypt that message using your Python skills. The Decryption Software has a caesar_cipher() function built in.
+Park Rangers recovered a damaged burner phone in the mud near the dumping site. Forensics managed to pull a scrambled text message and an encrypted contact name from it. Our analysts think it's a classic substitution code—the contact is listed under a rather historical name, which might be a clue. Have a close look at the crime scene photos, too; sometimes perpetrators leave a signature or a pattern behind that can give you the key to cracking their codes.
 
-But here's the kicker - the phone also has an encrypted company name in the contacts. Decrypt it, then query our Chemical Companies database to find out who the CEO is. That CEO is your culprit! And listen... we're running out of time. The flamingos are already evacuating, the fish are floating belly-up, and if this solvent reaches the main water table, we're looking at an environmental catastrophe that'll take decades to recover from.
+Once you figure out how to read that message and decrypt the contact name, you need to cross-reference it with our Chemical Companies database.
 
-Get that message decrypted, identify the company, find the CEO, and bring them to justice. The mangroves are counting on you, detectives. Move out!`;
+We're running out of time. The flamingos are already evacuating, the fish are floating belly-up, and if this solvent reaches the main water table, we're looking at a catastrophe that will take decades to recover from.
+
+Trace the message, find the company, and identify the person pulling the strings at the top. The mangroves are counting on you, detectives. Move out!`;
 
       default:
         return caseData.briefing;
@@ -51,6 +84,11 @@ Get that message decrypted, identify the company, find the CEO, and bring them t
 
   return (
     <div className="p-6 bg-[#c0c0c0] h-full flex flex-col">
+      {/* Hidden audio element */}
+      {getAudioSrc(caseData.id) && (
+        <audio ref={audioRef} src={getAudioSrc(caseData.id)!} onEnded={handleAudioEnded} />
+      )}
+
       {/* Transcript Modal */}
       {showTranscript && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowTranscript(false)}>
@@ -113,12 +151,11 @@ Get that message decrypted, identify the company, find the CEO, and bring them t
             <h3 className="font-bold mb-2 text-red-600">🎧 AUDIO BRIEFING</h3>
             <p className="text-xs mb-2">Listen to the full case briefing before proceeding.</p>
             <button
-              onClick={handlePlayAudio}
-              disabled={isPlaying}
+              onClick={isPlaying ? handlePauseAudio : handlePlayAudio}
               className="window-95-button flex items-center gap-2"
             >
-              <Play className="w-4 h-4" />
-              {isPlaying ? 'Playing...' : audioPlayed ? 'Replay Audio' : 'Play Briefing'}
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {isPlaying ? 'Pause' : audioPlayed ? 'Replay Audio' : 'Play Briefing'}
             </button>
           </div>
 

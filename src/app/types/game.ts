@@ -22,6 +22,7 @@ export interface Evidence {
   timestamp: string;
   relatedTo: string[];
   content?: string;
+  imageUrl?: string;
 }
 
 export interface Location {

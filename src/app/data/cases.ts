@@ -104,52 +104,8 @@ export const cases: Case[] = [
         location: 'E11 Near Jebel Ali Toll Gate',
         timestamp: '2026-03-29 18:34:00',
         relatedTo: [],
+        imageUrl: '/images/e01.png',
         content: 'ANPR system captured plate data: "B!5@8#9$1^2"\n\nThe reading is corrupted due to a sandstorm obscuring the camera lens. Special characters have been injected into the plate number.\n\nACTION REQUIRED: Use the Decryption Software (Python) to extract the real plate number. Try: extract_numbers("B!5@8#9$1^2") to pull out the digits, then prepend the letter "B" to form the full plate ID.'
-      },
-      {
-        id: 'e2',
-        type: 'Traffic Camera Footage',
-        description: 'Video of garbage being thrown from vehicle',
-        location: 'E11 Camera #2847',
-        timestamp: '2026-03-29 18:34:00',
-        relatedTo: [],
-        content: 'Footage shows a WHITE-COLOURED SUV driving at approximately 110 km/h. The driver-side window opens and a large black garbage bag is thrown onto the highway shoulder. The vehicle does not stop.\n\nVehicle description:\n- Type: SUV\n- Colour: White\n- Speed: ~110 km/h\n- Direction: Northbound on E11\n- Time: 18:34\n\nNote: Plate is unreadable from this angle due to sand on the lens.'
-      },
-      {
-        id: 'e3',
-        type: 'Waste Analysis Report',
-        description: 'Forensic analysis of dumped garbage bag',
-        location: 'Dubai Forensics Lab',
-        timestamp: '2026-03-29 20:15:00',
-        relatedTo: [],
-        content: 'Contents of the recovered garbage bag:\n- Plastic water bottles (12x)\n- Construction site debris (concrete fragments, rebar ties)\n- Food wrappers with Arabic labels\n- Cigarette butts\n- Broken PVC pipe sections\n\nConclusion: Waste profile is consistent with a CONSTRUCTION SITE. The debris is non-biodegradable and poses severe environmental risk to roadside wildlife habitats. DNA analysis on cigarette butts is pending (results expected in 2-3 weeks).'
-      },
-      {
-        id: 'e4',
-        type: 'Toll Gate Speed Log',
-        description: 'Vehicles flagged for speeding near Jebel Ali toll',
-        location: 'E11 Jebel Ali Toll Gate',
-        timestamp: '2026-03-29 18:30:00 - 18:40:00',
-        relatedTo: [],
-        content: 'The following vehicles were flagged by the toll gate speed sensors between 18:30 and 18:40 on March 29:\n\n| Plate     | Speed    | Time     |\n|-----------|----------|----------|\n| F67890    | 102 km/h | 18:31:12 |\n| B58912    | 112 km/h | 18:34:00 |\n| A19743    | 105 km/h | 18:35:22 |\n| O31975    | 98 km/h  | 18:37:45 |\n\nAll vehicles exceeded the 100 km/h speed limit at the toll zone. Plate B58912 matches the exact timestamp of the dumping incident.\n\nUse the SQL Terminal to look up the emirates_id for any plate in vehicle_registry, then JOIN with the suspects table to find the owner\'s name.'
-      },
-      {
-        id: 'e5',
-        type: 'Witness Statement',
-        description: 'Truck driver who witnessed the incident',
-        location: 'Police Statement Room',
-        timestamp: '2026-03-29 19:45:00',
-        relatedTo: [],
-        content: 'Statement from Rashid Al-Blooshi (Truck Driver, E11 regular):\n\n"I was driving northbound behind this white SUV. I noticed it was going fast, maybe 110 or more. Then the window rolls down and a big black bag gets thrown out. The bag hit the shoulder and split open — looked like construction rubbish. I only caught the first two characters of the plate... it started with B5. I reported it to the E11 traffic hotline immediately."'
-      },
-      {
-        id: 'e6',
-        type: 'Incident Location Report',
-        description: 'Environmental impact assessment at scene',
-        location: 'E11 Highway, KM marker 42.7',
-        timestamp: '2026-03-29 19:30:00',
-        relatedTo: [],
-        content: 'Responding officers found a torn garbage bag on the highway shoulder at KM 42.7, near the Jebel Ali Wildlife Sanctuary buffer zone.\n\nEnvironmental risk: HIGH\n- Plastic waste within 200m of protected wildlife corridor\n- PVC fragments could contaminate groundwater drainage\n- Construction debris poses hazard to road maintenance crews\n\nWeather at time of incident: Sandstorm conditions, visibility reduced to 500m. This explains the corrupted ANPR camera reading.'
       }
     ],
     locations: [
@@ -182,13 +138,13 @@ export const cases: Case[] = [
     description: 'Environmental disaster at Jubail Mangrove Park! A tanker truck dumped unauthorized industrial solvent directly into the mangrove root system under cover of darkness.',
     briefing: 'Detectives, we have a Code Red at the Jubail Mangrove Park. Someone backed a tanker truck up to the water under cover of darkness and dumped industrial solvent right into the mangrove root system! Park Rangers found a burner phone dropped in the mud with an encrypted message.\n\nYour mission:\n1. Examine the EVIDENCE FILES — one contains an encrypted message, another contains a clue to the cipher shift, and a third is a traffic camera screenshot.\n2. Use the DECRYPTION SOFTWARE (Python) with caesar_cipher() to decrypt the message. The decrypted text reveals a chemical batch code.\n3. Open the SQL TERMINAL and run SHOW TABLES to see the available databases. Query the chemical_imports table to find which companies imported that batch.\n4. Multiple companies will match — use the traffic camera evidence and the fleet_logs table to narrow down which company had a vehicle near Jubail at the time of the crime.\n5. Finally, query the corporate_registry table to find the CEO of the guilty company.\n6. When you are confident, click ACCUSE and enter the suspect\'s full name.',
     difficulty: 1,
-    culprit: 'Omar Abdullah',
+    culprit: 'Simreen Siraj',
     type: 'Illegal Chemical Dumping',
     location: 'Jubail Mangrove Park',
     suspects: [
       {
         id: 's20',
-        name: 'Omar Abdullah',
+        name: 'Simreen Siraj',
         age: 42,
         occupation: 'Business Owner',
         location: 'Mussafah Industrial Zone',
@@ -247,7 +203,8 @@ export const cases: Case[] = [
         location: 'Jubail Mangrove Park',
         timestamp: '2026-03-30 02:15:00',
         relatedTo: [],
-        content: 'A burner phone was recovered from the mud near the dumping site. The phone\'s draft messages contained a single encrypted text:\n\n\"Mre grqh. Edwfk #VY-AQE lv lq wkh pxg. Whoo wkh ervv wr zluh wkh uhvw ri wkh ixqgv wr wkh vkhoo dffrxqw.\"\n\nForensics confirms this is a Caesar cipher. Use the Decryption Software (Python) with caesar_cipher() to decode it. You will need to figure out the correct shift value — check the other evidence for a clue.\n\nOnce decrypted, the message should reveal a chemical batch code. Use the SQL Terminal to investigate which company imported that batch.'
+        imageUrl: '/images/e60.png',
+        content: 'Mre grqh. Edwfk #VY-AQE lv lq wkh pxg. Whoo wkh ervv wr zluh wkh uhvw ri wkh ixqgv wr wkh vkhoo dffrxqw.'
       },
       {
         id: 'e61',
@@ -256,7 +213,7 @@ export const cases: Case[] = [
         location: 'Jubail Mangrove Park - Burner Phone',
         timestamp: '2026-03-30 02:15:00',
         relatedTo: [],
-        content: '[IMAGE EVIDENCE]\n\nA photo recovered from the burner phone\'s gallery shows the side of a tanker truck. A diamond-shaped hazmat placard is visible — bright red with the number 3 printed large in the centre, indicating Class 3: Flammable Liquid. Someone has traced over the number repeatedly in black marker, as though fixating on it.\n\nBelow the placard, a muddy boot print is visible on the truck step.'
+        imageUrl: '/images/e61.png'
       },
       {
         id: 'e62',
@@ -265,7 +222,16 @@ export const cases: Case[] = [
         location: 'Jubail Mangrove Park - Gate Camera',
         timestamp: '2026-03-30 02:44:00',
         relatedTo: [],
-        content: '[IMAGE EVIDENCE]\n\nA dark, grainy night-vision screenshot from a traffic camera near the entrance of Jubail Mangrove Park. The image shows the rear of a white industrial tanker truck passing through the gate.\n\nCamera metadata:\n- Date: 2026-03-30\n- Time: 0244\n- Camera ID: JMP-GATE-07\n- Mode: Night Vision (IR)\n\nThe license plate is not readable due to mud splatter, but the vehicle is clearly a heavy tanker truck. Cross-reference this date and time with the fleet_logs database to identify which company operated a vehicle at this time.'
+        imageUrl: '/images/e62.png'
+      },
+      {
+        id: 'e63',
+        type: 'Additional Evidence',
+        description: 'Photo recovered from the crime scene',
+        location: 'Jubail Mangrove Park',
+        timestamp: '2026-03-30 03:00:00',
+        relatedTo: [],
+        imageUrl: '/images/e63.png'
       }
     ],
     locations: [
@@ -287,9 +253,9 @@ export const cases: Case[] = [
       }
     ],
     solution: {
-      who: 'Omar Abdullah',
+      who: 'Simreen Siraj',
       why: 'CEO of Gulf Chemicals LLC, ordered an illegal midnight dump of industrial solvent to avoid the 5,000 AED legal disposal fee and wired payment to a shell account.',
-      how: 'A burner phone found at the scene contained an encrypted Caesar cipher message (shift -3). Decrypting it revealed: "Job done. Batch #SV-XNB is in the mud. Tell the boss to wire the rest of the funds to the shell account." Querying chemical_imports for batch SV-XNB returned three companies (C-101, C-103, C-105). The traffic camera showed a tanker at Jubail on date 2026-03-30 at time 0244 — querying fleet_logs for that date and time revealed only company C-101 had a vehicle logged then. Querying corporate_registry for C-101 identified Gulf Chemicals LLC, CEO: Omar Abdullah.'
+      how: 'A burner phone found at the scene contained an encrypted Caesar cipher message (shift -3). Decrypting it revealed: "Job done. Batch #SV-XNB is in the mud. Tell the boss to wire the rest of the funds to the shell account." Querying chemical_imports for batch SV-XNB returned three companies (C-101, C-103, C-105). The traffic camera showed a tanker at Jubail on date 2026-03-30 at time 0244 — querying fleet_logs for that date and time revealed only company C-101 had a vehicle logged then. Querying corporate_registry for C-101 identified Gulf Chemicals LLC, CEO: Simreen Siraj.'
     }
   },
   {

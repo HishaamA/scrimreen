@@ -14,7 +14,7 @@ const SUSPECTS_DATA: SuspectRecord[] = [
   { emirates_id: '784-1988-2345678-2', name: 'Fatima Al-Mazrui', age: 35, occupation: 'Business Owner', location: 'Al Reem Island' },
   { emirates_id: '784-1972-3456789-3', name: 'Mohammed Hassan', age: 51, occupation: 'Factory Owner', location: 'Mussafah' },
   { emirates_id: '784-1997-4567890-4', name: 'Sarah Mitchell', age: 29, occupation: 'Environmental Officer', location: 'Dubai Marina' },
-  { emirates_id: '784-1984-5678901-5', name: 'Omar Abdullah', age: 42, occupation: 'Business Owner', location: 'Mussafah Industrial Zone' },
+  { emirates_id: '784-1984-5678901-5', name: 'Simreen Siraj', age: 42, occupation: 'Business Owner', location: 'Mussafah Industrial Zone' },
   { emirates_id: '784-1995-6789012-6', name: 'Layla Ibrahim', age: 28, occupation: 'Shop Manager', location: 'Khalifa City' },
   { emirates_id: '784-1981-7890123-7', name: 'Khalid Al-Mansoori', age: 45, occupation: 'Delivery Driver', location: 'Al Barsha' },
   { emirates_id: '784-1988-8901234-8', name: 'Marina Popov', age: 38, occupation: 'Restaurant Owner', location: 'Jumeirah' },

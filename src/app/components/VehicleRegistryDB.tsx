@@ -5,50 +5,51 @@ interface VehicleRecord {
   emirates_id: string;
   registration_year: number;
   colour_of_car: string;
-  time_passed_under_toll: string;
+  date: string;
+  time: string;
 }
 
 const VEHICLE_REGISTRY: VehicleRecord[] = [
-  { vehicle_plate_id: 'B58912', emirates_id: '784-1992-1234567-1', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:34:00' },
-  { vehicle_plate_id: 'A12345', emirates_id: '784-1988-2345678-2', registration_year: 2022, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 18:12:00' },
-  { vehicle_plate_id: 'C98765', emirates_id: '784-1972-3456789-3', registration_year: 2020, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 18:45:00' },
-  { vehicle_plate_id: 'D54321', emirates_id: '784-1997-4567890-4', registration_year: 2023, colour_of_car: 'Blue', time_passed_under_toll: '2026-03-29 17:58:00' },
-  { vehicle_plate_id: 'E11223', emirates_id: '784-1984-5678901-5', registration_year: 2019, colour_of_car: 'Red', time_passed_under_toll: '2026-03-29 19:02:00' },
-  { vehicle_plate_id: 'F67890', emirates_id: '784-1995-6789012-6', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:23:00' },
-  { vehicle_plate_id: 'G24680', emirates_id: '784-1981-7890123-7', registration_year: 2022, colour_of_car: 'Gray', time_passed_under_toll: '2026-03-29 18:56:00' },
-  { vehicle_plate_id: 'H13579', emirates_id: '784-1988-8901234-8', registration_year: 2020, colour_of_car: 'Green', time_passed_under_toll: '2026-03-29 17:41:00' },
-  { vehicle_plate_id: 'I97531', emirates_id: '784-1978-9012345-9', registration_year: 2023, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 19:15:00' },
-  { vehicle_plate_id: 'J86420', emirates_id: '784-1996-0123456-0', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:07:00' },
-  { vehicle_plate_id: 'S11111', emirates_id: '784-2001-1111111-1', registration_year: 2024, colour_of_car: 'Gold', time_passed_under_toll: '2026-03-29 08:00:00' },
-  { vehicle_plate_id: 'H22222', emirates_id: '784-2000-2222222-2', registration_year: 2024, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 08:15:00' },
-  { vehicle_plate_id: 'K75319', emirates_id: '784-1987-1122334-1', registration_year: 2022, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 18:39:00' },
-  { vehicle_plate_id: 'L64208', emirates_id: '784-1993-2233445-2', registration_year: 2019, colour_of_car: 'Blue', time_passed_under_toll: '2026-03-29 17:52:00' },
-  { vehicle_plate_id: 'M53197', emirates_id: '784-1984-3344556-3', registration_year: 2023, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 19:08:00' },
-  { vehicle_plate_id: 'N42086', emirates_id: '784-1991-4455667-4', registration_year: 2020, colour_of_car: 'Red', time_passed_under_toll: '2026-03-29 18:28:00' },
-  { vehicle_plate_id: 'O31975', emirates_id: '784-1979-5566778-5', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:51:00' },
-  { vehicle_plate_id: 'P20864', emirates_id: '784-1997-6677889-6', registration_year: 2022, colour_of_car: 'Gray', time_passed_under_toll: '2026-03-29 17:46:00' },
-  { vehicle_plate_id: 'Q19753', emirates_id: '784-1986-7788990-7', registration_year: 2023, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 19:21:00' },
-  { vehicle_plate_id: 'R08642', emirates_id: '784-1989-8899001-8', registration_year: 2019, colour_of_car: 'Blue', time_passed_under_toll: '2026-03-29 18:14:00' },
-  { vehicle_plate_id: 'S97531', emirates_id: '784-1994-9900112-9', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:42:00' },
-  { vehicle_plate_id: 'T86420', emirates_id: '784-1982-0011223-0', registration_year: 2020, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 17:59:00' },
-  { vehicle_plate_id: 'U75309', emirates_id: '784-1995-1122334-1', registration_year: 2022, colour_of_car: 'Red', time_passed_under_toll: '2026-03-29 19:03:00' },
-  { vehicle_plate_id: 'V64298', emirates_id: '784-1988-2233445-2', registration_year: 2023, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 18:26:00' },
-  { vehicle_plate_id: 'W53187', emirates_id: '784-1983-3344556-3', registration_year: 2021, colour_of_car: 'Gray', time_passed_under_toll: '2026-03-29 18:57:00' },
-  { vehicle_plate_id: 'X42076', emirates_id: '784-1996-4455667-4', registration_year: 2019, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 17:43:00' },
-  { vehicle_plate_id: 'Y31965', emirates_id: '784-1990-5566778-5', registration_year: 2020, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 19:18:00' },
-  { vehicle_plate_id: 'Z20854', emirates_id: '784-1985-6677889-6', registration_year: 2022, colour_of_car: 'Blue', time_passed_under_toll: '2026-03-29 18:09:00' },
-  { vehicle_plate_id: 'A19743', emirates_id: '784-1992-7788990-7', registration_year: 2023, colour_of_car: 'Red', time_passed_under_toll: '2026-03-29 18:35:00' },
-  { vehicle_plate_id: 'B08632', emirates_id: '784-1987-8899001-8', registration_year: 2021, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:48:00' },
-  { vehicle_plate_id: 'C97521', emirates_id: '784-1981-9900112-9', registration_year: 2019, colour_of_car: 'Silver', time_passed_under_toll: '2026-03-29 17:54:00' },
-  { vehicle_plate_id: 'D86410', emirates_id: '784-1993-0011223-0', registration_year: 2022, colour_of_car: 'Gray', time_passed_under_toll: '2026-03-29 19:11:00' },
-  { vehicle_plate_id: 'E75399', emirates_id: '784-1989-1122334-1', registration_year: 2020, colour_of_car: 'Black', time_passed_under_toll: '2026-03-29 18:22:00' },
-  { vehicle_plate_id: 'F64288', emirates_id: '784-1984-2233445-2', registration_year: 2023, colour_of_car: 'White', time_passed_under_toll: '2026-03-29 18:53:00' },
-  { vehicle_plate_id: 'G53177', emirates_id: '784-1991-3344556-3', registration_year: 2021, colour_of_car: 'Blue', time_passed_under_toll: '2026-03-29 17:47:00' },
-  { vehicle_plate_id: 'H42066', emirates_id: '784-1986-4455667-4', registration_year: 2019, colour_of_car: 'Red', time_passed_under_toll: '2026-03-29 19:24:00' },
+  { vehicle_plate_id: 'B58912', emirates_id: '784-1992-1234567-1', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1834' },
+  { vehicle_plate_id: 'A12345', emirates_id: '784-1988-2345678-2', registration_year: 2022, colour_of_car: 'Black', date: '2026-03-29', time: '1812' },
+  { vehicle_plate_id: 'C98765', emirates_id: '784-1972-3456789-3', registration_year: 2020, colour_of_car: 'Silver', date: '2026-03-29', time: '1845' },
+  { vehicle_plate_id: 'D54321', emirates_id: '784-1997-4567890-4', registration_year: 2023, colour_of_car: 'Blue', date: '2026-03-29', time: '1758' },
+  { vehicle_plate_id: 'E11223', emirates_id: '784-1984-5678901-5', registration_year: 2019, colour_of_car: 'Red', date: '2026-03-29', time: '1902' },
+  { vehicle_plate_id: 'F67890', emirates_id: '784-1995-6789012-6', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1823' },
+  { vehicle_plate_id: 'G24680', emirates_id: '784-1981-7890123-7', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1856' },
+  { vehicle_plate_id: 'H13579', emirates_id: '784-1988-8901234-8', registration_year: 2020, colour_of_car: 'Green', date: '2026-03-29', time: '1741' },
+  { vehicle_plate_id: 'I97531', emirates_id: '784-1978-9012345-9', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1915' },
+  { vehicle_plate_id: 'J86420', emirates_id: '784-1996-0123456-0', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1807' },
+  { vehicle_plate_id: 'S11111', emirates_id: '784-2001-1111111-1', registration_year: 2024, colour_of_car: 'Gold', date: '2026-03-29', time: '0800' },
+  { vehicle_plate_id: 'H22222', emirates_id: '784-2000-2222222-2', registration_year: 2024, colour_of_car: 'Silver', date: '2026-03-29', time: '0815' },
+  { vehicle_plate_id: 'K75319', emirates_id: '784-1987-1122334-1', registration_year: 2022, colour_of_car: 'Silver', date: '2026-03-29', time: '1839' },
+  { vehicle_plate_id: 'L64208', emirates_id: '784-1993-2233445-2', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1752' },
+  { vehicle_plate_id: 'M53197', emirates_id: '784-1984-3344556-3', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1908' },
+  { vehicle_plate_id: 'N42086', emirates_id: '784-1991-4455667-4', registration_year: 2020, colour_of_car: 'Red', date: '2026-03-29', time: '1828' },
+  { vehicle_plate_id: 'O31975', emirates_id: '784-1979-5566778-5', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1851' },
+  { vehicle_plate_id: 'P20864', emirates_id: '784-1997-6677889-6', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1746' },
+  { vehicle_plate_id: 'Q19753', emirates_id: '784-1986-7788990-7', registration_year: 2023, colour_of_car: 'Silver', date: '2026-03-29', time: '1921' },
+  { vehicle_plate_id: 'R08642', emirates_id: '784-1989-8899001-8', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1814' },
+  { vehicle_plate_id: 'S97531', emirates_id: '784-1994-9900112-9', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1842' },
+  { vehicle_plate_id: 'T86420', emirates_id: '784-1982-0011223-0', registration_year: 2020, colour_of_car: 'Black', date: '2026-03-29', time: '1759' },
+  { vehicle_plate_id: 'U75309', emirates_id: '784-1995-1122334-1', registration_year: 2022, colour_of_car: 'Red', date: '2026-03-29', time: '1903' },
+  { vehicle_plate_id: 'V64298', emirates_id: '784-1988-2233445-2', registration_year: 2023, colour_of_car: 'Silver', date: '2026-03-29', time: '1826' },
+  { vehicle_plate_id: 'W53187', emirates_id: '784-1983-3344556-3', registration_year: 2021, colour_of_car: 'Gray', date: '2026-03-29', time: '1857' },
+  { vehicle_plate_id: 'X42076', emirates_id: '784-1996-4455667-4', registration_year: 2019, colour_of_car: 'White', date: '2026-03-29', time: '1743' },
+  { vehicle_plate_id: 'Y31965', emirates_id: '784-1990-5566778-5', registration_year: 2020, colour_of_car: 'Black', date: '2026-03-29', time: '1918' },
+  { vehicle_plate_id: 'Z20854', emirates_id: '784-1985-6677889-6', registration_year: 2022, colour_of_car: 'Blue', date: '2026-03-29', time: '1809' },
+  { vehicle_plate_id: 'A19743', emirates_id: '784-1992-7788990-7', registration_year: 2023, colour_of_car: 'Red', date: '2026-03-29', time: '1835' },
+  { vehicle_plate_id: 'B08632', emirates_id: '784-1987-8899001-8', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1848' },
+  { vehicle_plate_id: 'C97521', emirates_id: '784-1981-9900112-9', registration_year: 2019, colour_of_car: 'Silver', date: '2026-03-29', time: '1754' },
+  { vehicle_plate_id: 'D86410', emirates_id: '784-1993-0011223-0', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1911' },
+  { vehicle_plate_id: 'E75399', emirates_id: '784-1989-1122334-1', registration_year: 2020, colour_of_car: 'Black', date: '2026-03-29', time: '1822' },
+  { vehicle_plate_id: 'F64288', emirates_id: '784-1984-2233445-2', registration_year: 2023, colour_of_car: 'White', date: '2026-03-29', time: '1853' },
+  { vehicle_plate_id: 'G53177', emirates_id: '784-1991-3344556-3', registration_year: 2021, colour_of_car: 'Blue', date: '2026-03-29', time: '1747' },
+  { vehicle_plate_id: 'H42066', emirates_id: '784-1986-4455667-4', registration_year: 2019, colour_of_car: 'Red', date: '2026-03-29', time: '1924' },
 ];
 
 export function VehicleRegistryDB() {
-  const [sortColumn, setSortColumn] = useState<keyof VehicleRecord>('time_passed_under_toll');
+  const [sortColumn, setSortColumn] = useState<keyof VehicleRecord>('time');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
   const sortedData = [...VEHICLE_REGISTRY].sort((a, b) => {
@@ -120,9 +121,15 @@ export function VehicleRegistryDB() {
               </th>
               <th 
                 className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('time_passed_under_toll')}
+                onClick={() => handleSort('date')}
               >
-                time_passed_under_toll {sortColumn === 'time_passed_under_toll' && (sortOrder === 'asc' ? 'â†‘' : 'â†“')}
+                date {sortColumn === 'date' && (sortOrder === 'asc' ? '↑' : '↓')}
+              </th>
+              <th 
+                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
+                onClick={() => handleSort('time')}
+              >
+                time {sortColumn === 'time' && (sortOrder === 'asc' ? '↑' : '↓')}
               </th>
             </tr>
           </thead>
@@ -162,7 +169,10 @@ export function VehicleRegistryDB() {
                   </span>
                 </td>
                 <td className="border border-[#808080] px-2 py-1 font-mono text-center">
-                  {record.time_passed_under_toll}
+                  {record.date}
+                </td>
+                <td className="border border-[#808080] px-2 py-1 font-mono text-center">
+                  {record.time}
                 </td>
               </tr>
             ))}
