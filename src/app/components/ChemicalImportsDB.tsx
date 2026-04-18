@@ -11,6 +11,7 @@ const CHEMICAL_IMPORTS: ChemicalImport[] = [
   { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-101' },
   { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-103' },
   { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-105' },
+  { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-106' },
   { batch_id: 'KP-DLQ', chemical_name: 'Acetone', company_id: 'C-102' },
   { batch_id: 'BT-WPS', chemical_name: 'Sodium Hydroxide', company_id: 'C-104' },
   { batch_id: 'MG-FKN', chemical_name: 'Methanol', company_id: 'C-101' },
@@ -18,6 +19,17 @@ const CHEMICAL_IMPORTS: ChemicalImport[] = [
   { batch_id: 'FL-RPB', chemical_name: 'Hydrochloric Acid', company_id: 'C-105' },
   { batch_id: 'WC-ABV', chemical_name: 'Sulfuric Acid', company_id: 'C-102' },
   { batch_id: 'DN-MFT', chemical_name: 'Ammonia Solution', company_id: 'C-104' },
+  { batch_id: 'AL-KWP', chemical_name: 'Isopropanol', company_id: 'C-106' },
+  { batch_id: 'CR-NXV', chemical_name: 'Toluene', company_id: 'C-107' },
+  { batch_id: 'DX-QMS', chemical_name: 'Benzene', company_id: 'C-108' },
+  { batch_id: 'EF-TBR', chemical_name: 'Xylene', company_id: 'C-109' },
+  { batch_id: 'GH-ZWC', chemical_name: 'Acetonitrile', company_id: 'C-110' },
+  { batch_id: 'IJ-VNP', chemical_name: 'Chloroform', company_id: 'C-107' },
+  { batch_id: 'KL-MCT', chemical_name: 'Diethyl Ether', company_id: 'C-108' },
+  { batch_id: 'NP-SQX', chemical_name: 'Formaldehyde', company_id: 'C-109' },
+  { batch_id: 'QR-FHD', chemical_name: 'Nitric Acid', company_id: 'C-110' },
+  { batch_id: 'ST-LBV', chemical_name: 'Phosphoric Acid', company_id: 'C-111' },
+  { batch_id: 'UV-GKW', chemical_name: 'Sodium Cyanide', company_id: 'C-102' },
 ];
 
 export function ChemicalImportsDB() {

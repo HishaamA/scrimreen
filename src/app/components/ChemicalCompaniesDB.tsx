@@ -13,6 +13,21 @@ const CORPORATE_REGISTRY: CorporateRecord[] = [
   { company_id: 'C-103', company_name: 'GreenWaste Management', ceo_name: 'Ahmed Khalifa' },
   { company_id: 'C-104', company_name: 'EcoSafe Chemical Co.', ceo_name: 'Fatima Hassan' },
   { company_id: 'C-105', company_name: 'Industrial Solvents LLC', ceo_name: 'Mohammed Al-Zaabi' },
+  { company_id: 'C-106', company_name: 'Apex Chemical Trading', ceo_name: 'Jasim Al-Suwaidi' },
+  { company_id: 'C-107', company_name: 'SolventPro FZE', ceo_name: 'Vikram Nair' },
+  { company_id: 'C-108', company_name: 'Meridian Hazmat Co.', ceo_name: 'Noura Al-Rasheed' },
+  { company_id: 'C-109', company_name: 'Gulf Industrial Supplies', ceo_name: 'Tariq Al-Harthi' },
+  { company_id: 'C-110', company_name: 'Emirates ChemEx LLC', ceo_name: 'Fiona MacAllister' },
+  { company_id: 'C-111', company_name: 'AquaChem Solutions', ceo_name: 'Rashid Al-Tamimi' },
+  { company_id: 'C-112', company_name: 'ProChem Industries', ceo_name: 'Lin Wei' },
+  { company_id: 'C-113', company_name: 'TechSolv Abu Dhabi', ceo_name: 'Hamad Al-Falasi' },
+  { company_id: 'C-114', company_name: 'Arabian Chemical Corp', ceo_name: 'Abdullah Al-Hajri' },
+  { company_id: 'C-115', company_name: 'Mussafah Waste Solutions', ceo_name: 'Sanjay Mehta' },
+  { company_id: 'C-116', company_name: 'BioWaste Management FZE', ceo_name: 'Mariam Binte Yousuf' },
+  { company_id: 'C-117', company_name: 'Green Horizon Chemicals', ceo_name: 'Pierre Fontaine' },
+  { company_id: 'C-118', company_name: 'Coastal Chemical Trading', ceo_name: 'Omar Bin Ghaith' },
+  { company_id: 'C-119', company_name: 'Delta Petrochemicals LLC', ceo_name: 'Amira Al-Hosani' },
+  { company_id: 'C-120', company_name: 'SafeChem UAE', ceo_name: 'Bharat Kumar Singh' },
 ];
 
 export function ChemicalCompaniesDB() {

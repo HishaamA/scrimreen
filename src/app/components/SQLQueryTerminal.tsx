@@ -20,6 +20,14 @@ const DEFAULT_SUSPECTS = [
   { emirates_id: '784-1996-0123456-0', name: 'Aisha Mohammed', age: 27, occupation: 'Teacher', location: 'Khalidiya' },
   { emirates_id: '784-2001-1111111-1', name: 'Simreen Siraj Shehzadi', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
   { emirates_id: '784-2000-2222222-2', name: 'Hishaam Abdul Razik', age: 25, occupation: 'Senior Detective', location: 'Abu Dhabi' },
+  { emirates_id: '784-1980-3333333-3', name: 'Omar Al-Rashidi', age: 43, occupation: 'Truck Driver', location: 'Sharjah' },
+  { emirates_id: '784-1993-4444444-4', name: 'Nour Binte Hamdan', age: 30, occupation: 'Lab Technician', location: 'Al Ain' },
+  { emirates_id: '784-1975-5555555-5', name: 'Tariq Bin Salim', age: 48, occupation: 'Warehouse Supervisor', location: 'Jebel Ali' },
+  { emirates_id: '784-1990-6666666-6', name: 'Priya Subramaniam', age: 33, occupation: 'Logistics Coordinator', location: 'Dubai Silicon Oasis' },
+  { emirates_id: '784-1986-7777777-7', name: 'Yusuf Al-Blooshi', age: 37, occupation: 'Civil Engineer', location: 'Abu Dhabi' },
+  { emirates_id: '784-1998-8888888-8', name: 'Reem Al-Nuaimi', age: 25, occupation: 'Environmental Inspector', location: 'Yas Island' },
+  { emirates_id: '784-1970-9999999-9', name: 'Bharat Menon', age: 53, occupation: 'Chemical Plant Manager', location: 'Mussafah' },
+  { emirates_id: '784-1994-0000001-0', name: 'Zineb Chaoui', age: 29, occupation: 'Customs Officer', location: 'Jebel Ali Port' },
 ];
 
 const DEFAULT_VEHICLE_REGISTRY = [
@@ -35,6 +43,14 @@ const DEFAULT_VEHICLE_REGISTRY = [
   { vehicle_plate_id: 'J86420', emirates_id: '784-1996-0123456-0', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1807' },
   { vehicle_plate_id: 'S11111', emirates_id: '784-2001-1111111-1', registration_year: 2024, colour_of_car: 'Gold', date: '2026-03-29', time: '0800' },
   { vehicle_plate_id: 'H22222', emirates_id: '784-2000-2222222-2', registration_year: 2024, colour_of_car: 'Silver', date: '2026-03-29', time: '0815' },
+  { vehicle_plate_id: 'K75319', emirates_id: '784-1987-1122334-1', registration_year: 2022, colour_of_car: 'Silver', date: '2026-03-29', time: '1839' },
+  { vehicle_plate_id: 'L64208', emirates_id: '784-1993-2233445-2', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1752' },
+  { vehicle_plate_id: 'M53197', emirates_id: '784-1984-3344556-3', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1908' },
+  { vehicle_plate_id: 'N42086', emirates_id: '784-1991-4455667-4', registration_year: 2020, colour_of_car: 'Red', date: '2026-03-29', time: '1828' },
+  { vehicle_plate_id: 'O31975', emirates_id: '784-1979-5566778-5', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1851' },
+  { vehicle_plate_id: 'P20864', emirates_id: '784-1997-6677889-6', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1746' },
+  { vehicle_plate_id: 'Q19753', emirates_id: '784-1986-7788990-7', registration_year: 2023, colour_of_car: 'Silver', date: '2026-03-29', time: '1921' },
+  { vehicle_plate_id: 'R08642', emirates_id: '784-1989-8899001-8', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1814' },
 ];
 
 // Case-002 specific tables
@@ -42,6 +58,7 @@ const CHEMICAL_IMPORTS = [
   { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-101' },
   { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-103' },
   { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-105' },
+  { batch_id: 'SV-XNB', chemical_name: 'Trichloroethylene', company_id: 'C-106' },
   { batch_id: 'KP-DLQ', chemical_name: 'Acetone', company_id: 'C-102' },
   { batch_id: 'BT-WPS', chemical_name: 'Sodium Hydroxide', company_id: 'C-104' },
   { batch_id: 'MG-FKN', chemical_name: 'Methanol', company_id: 'C-101' },
@@ -49,19 +66,42 @@ const CHEMICAL_IMPORTS = [
   { batch_id: 'FL-RPB', chemical_name: 'Hydrochloric Acid', company_id: 'C-105' },
   { batch_id: 'WC-ABV', chemical_name: 'Sulfuric Acid', company_id: 'C-102' },
   { batch_id: 'DN-MFT', chemical_name: 'Ammonia Solution', company_id: 'C-104' },
+  { batch_id: 'AL-KWP', chemical_name: 'Isopropanol', company_id: 'C-106' },
+  { batch_id: 'CR-NXV', chemical_name: 'Toluene', company_id: 'C-107' },
+  { batch_id: 'DX-QMS', chemical_name: 'Benzene', company_id: 'C-108' },
+  { batch_id: 'EF-TBR', chemical_name: 'Xylene', company_id: 'C-109' },
+  { batch_id: 'GH-ZWC', chemical_name: 'Acetonitrile', company_id: 'C-110' },
+  { batch_id: 'IJ-VNP', chemical_name: 'Chloroform', company_id: 'C-107' },
+  { batch_id: 'KL-MCT', chemical_name: 'Diethyl Ether', company_id: 'C-108' },
+  { batch_id: 'NP-SQX', chemical_name: 'Formaldehyde', company_id: 'C-109' },
+  { batch_id: 'QR-FHD', chemical_name: 'Nitric Acid', company_id: 'C-110' },
+  { batch_id: 'ST-LBV', chemical_name: 'Phosphoric Acid', company_id: 'C-111' },
+  { batch_id: 'UV-GKW', chemical_name: 'Sodium Cyanide', company_id: 'C-102' },
 ];
 
 const FLEET_LOGS = [
   { vehicle_id: 'TK-4401', company_id: 'C-101', date: '2026-03-29', time: '2330' },
   { vehicle_id: 'TK-4401', company_id: 'C-101', date: '2026-03-30', time: '0244' },
   { vehicle_id: 'TK-6677', company_id: 'C-101', date: '2026-03-30', time: '0900' },
+  { vehicle_id: 'TK-6677', company_id: 'C-101', date: '2026-03-29', time: '1600' },
   { vehicle_id: 'TK-2209', company_id: 'C-103', date: '2026-03-30', time: '0120' },
   { vehicle_id: 'TK-2209', company_id: 'C-103', date: '2026-03-30', time: '0315' },
   { vehicle_id: 'TK-8834', company_id: 'C-103', date: '2026-03-29', time: '2200' },
+  { vehicle_id: 'TK-8834', company_id: 'C-103', date: '2026-03-31', time: '0700' },
   { vehicle_id: 'TK-7712', company_id: 'C-105', date: '2026-03-30', time: '0230' },
   { vehicle_id: 'TK-7712', company_id: 'C-105', date: '2026-03-30', time: '0410' },
   { vehicle_id: 'TK-3308', company_id: 'C-102', date: '2026-03-30', time: '0800' },
   { vehicle_id: 'TK-5519', company_id: 'C-104', date: '2026-03-30', time: '0645' },
+  { vehicle_id: 'TK-5519', company_id: 'C-104', date: '2026-03-31', time: '0615' },
+  { vehicle_id: 'TK-1155', company_id: 'C-106', date: '2026-03-30', time: '0130' },
+  { vehicle_id: 'TK-1155', company_id: 'C-106', date: '2026-03-30', time: '0445' },
+  { vehicle_id: 'TK-9923', company_id: 'C-107', date: '2026-03-29', time: '2115' },
+  { vehicle_id: 'TK-9923', company_id: 'C-107', date: '2026-03-30', time: '0730' },
+  { vehicle_id: 'TK-3341', company_id: 'C-108', date: '2026-03-30', time: '0355' },
+  { vehicle_id: 'TK-3341', company_id: 'C-108', date: '2026-03-30', time: '1015' },
+  { vehicle_id: 'TK-7788', company_id: 'C-109', date: '2026-03-29', time: '1845' },
+  { vehicle_id: 'TK-7788', company_id: 'C-109', date: '2026-03-30', time: '0510' },
+  { vehicle_id: 'TK-6612', company_id: 'C-110', date: '2026-03-30', time: '0930' },
 ];
 
 const CORPORATE_REGISTRY = [
@@ -70,6 +110,21 @@ const CORPORATE_REGISTRY = [
   { company_id: 'C-103', company_name: 'GreenWaste Management', ceo_name: 'Ahmed Khalifa' },
   { company_id: 'C-104', company_name: 'EcoSafe Chemical Co.', ceo_name: 'Fatima Hassan' },
   { company_id: 'C-105', company_name: 'Industrial Solvents LLC', ceo_name: 'Mohammed Al-Zaabi' },
+  { company_id: 'C-106', company_name: 'Apex Chemical Trading', ceo_name: 'Jasim Al-Suwaidi' },
+  { company_id: 'C-107', company_name: 'SolventPro FZE', ceo_name: 'Vikram Nair' },
+  { company_id: 'C-108', company_name: 'Meridian Hazmat Co.', ceo_name: 'Noura Al-Rasheed' },
+  { company_id: 'C-109', company_name: 'Gulf Industrial Supplies', ceo_name: 'Tariq Al-Harthi' },
+  { company_id: 'C-110', company_name: 'Emirates ChemEx LLC', ceo_name: 'Fiona MacAllister' },
+  { company_id: 'C-111', company_name: 'AquaChem Solutions', ceo_name: 'Rashid Al-Tamimi' },
+  { company_id: 'C-112', company_name: 'ProChem Industries', ceo_name: 'Lin Wei' },
+  { company_id: 'C-113', company_name: 'TechSolv Abu Dhabi', ceo_name: 'Hamad Al-Falasi' },
+  { company_id: 'C-114', company_name: 'Arabian Chemical Corp', ceo_name: 'Abdullah Al-Hajri' },
+  { company_id: 'C-115', company_name: 'Mussafah Waste Solutions', ceo_name: 'Sanjay Mehta' },
+  { company_id: 'C-116', company_name: 'BioWaste Management FZE', ceo_name: 'Mariam Binte Yousuf' },
+  { company_id: 'C-117', company_name: 'Green Horizon Chemicals', ceo_name: 'Pierre Fontaine' },
+  { company_id: 'C-118', company_name: 'Coastal Chemical Trading', ceo_name: 'Omar Bin Ghaith' },
+  { company_id: 'C-119', company_name: 'Delta Petrochemicals LLC', ceo_name: 'Amira Al-Hosani' },
+  { company_id: 'C-120', company_name: 'SafeChem UAE', ceo_name: 'Bharat Kumar Singh' },
 ];
 
 function buildMockDatabase(currentCase?: any) {

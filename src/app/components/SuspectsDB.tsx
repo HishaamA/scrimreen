@@ -22,6 +22,14 @@ const SUSPECTS_DATA: SuspectRecord[] = [
   { emirates_id: '784-1996-0123456-0', name: 'Aisha Mohammed', age: 27, occupation: 'Teacher', location: 'Khalidiya' },
   { emirates_id: '784-2001-1111111-1', name: 'Simreen Siraj Shehzadi', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
   { emirates_id: '784-2000-2222222-2', name: 'Hishaam Abdul Razik', age: 25, occupation: 'Senior Detective', location: 'Abu Dhabi' },
+  { emirates_id: '784-1980-3333333-3', name: 'Omar Al-Rashidi', age: 43, occupation: 'Truck Driver', location: 'Sharjah' },
+  { emirates_id: '784-1993-4444444-4', name: 'Nour Binte Hamdan', age: 30, occupation: 'Lab Technician', location: 'Al Ain' },
+  { emirates_id: '784-1975-5555555-5', name: 'Tariq Bin Salim', age: 48, occupation: 'Warehouse Supervisor', location: 'Jebel Ali' },
+  { emirates_id: '784-1990-6666666-6', name: 'Priya Subramaniam', age: 33, occupation: 'Logistics Coordinator', location: 'Dubai Silicon Oasis' },
+  { emirates_id: '784-1986-7777777-7', name: 'Yusuf Al-Blooshi', age: 37, occupation: 'Civil Engineer', location: 'Abu Dhabi' },
+  { emirates_id: '784-1998-8888888-8', name: 'Reem Al-Nuaimi', age: 25, occupation: 'Environmental Inspector', location: 'Yas Island' },
+  { emirates_id: '784-1970-9999999-9', name: 'Bharat Menon', age: 53, occupation: 'Chemical Plant Manager', location: 'Mussafah' },
+  { emirates_id: '784-1994-0000001-0', name: 'Zineb Chaoui', age: 29, occupation: 'Customs Officer', location: 'Jebel Ali Port' },
 ];
 
 export function SuspectsDB() {
