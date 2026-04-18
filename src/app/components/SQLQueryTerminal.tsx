@@ -18,7 +18,7 @@ const DEFAULT_SUSPECTS = [
   { emirates_id: '784-1988-8901234-8', name: 'Marina Popov', age: 38, occupation: 'Restaurant Owner', location: 'Jumeirah' },
   { emirates_id: '784-1978-9012345-9', name: 'Hassan Al-Zaabi', age: 45, occupation: 'Bank Manager', location: 'Business Bay' },
   { emirates_id: '784-1996-0123456-0', name: 'Aisha Mohammed', age: 27, occupation: 'Teacher', location: 'Khalidiya' },
-  { emirates_id: '784-2001-1111111-1', name: 'Simreen Siraj Shehzadi', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
+  { emirates_id: '784-2001-1111111-1', name: 'Ben Dover', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
   { emirates_id: '784-2000-2222222-2', name: 'Hishaam Abdul Razik', age: 25, occupation: 'Senior Detective', location: 'Abu Dhabi' },
   { emirates_id: '784-1980-3333333-3', name: 'Omar Al-Rashidi', age: 43, occupation: 'Truck Driver', location: 'Sharjah' },
   { emirates_id: '784-1993-4444444-4', name: 'Nour Binte Hamdan', age: 30, occupation: 'Lab Technician', location: 'Al Ain' },

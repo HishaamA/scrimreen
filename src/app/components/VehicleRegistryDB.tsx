@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 
 interface VehicleRecord {
   vehicle_plate_id: string;
@@ -49,27 +49,14 @@ const VEHICLE_REGISTRY: VehicleRecord[] = [
 ];
 
 export function VehicleRegistryDB() {
-  const [sortColumn, setSortColumn] = useState<keyof VehicleRecord>('time');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-
-  const sortedData = [...VEHICLE_REGISTRY].sort((a, b) => {
-    const aVal = a[sortColumn];
-    const bVal = b[sortColumn];
-    if (sortOrder === 'asc') {
-      return aVal > bVal ? 1 : -1;
-    } else {
-      return aVal < bVal ? 1 : -1;
+  const displayData = useMemo(() => {
+    const arr = [...VEHICLE_REGISTRY];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-  });
-
-  const handleSort = (column: keyof VehicleRecord) => {
-    if (sortColumn === column) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortColumn(column);
-      setSortOrder('asc');
-    }
-  };
+    return arr;
+  }, []);
 
   return (
     <div className="flex flex-col h-full bg-[#c0c0c0]">
@@ -95,46 +82,16 @@ export function VehicleRegistryDB() {
         <table className="w-full border-2 border-[#808080] bg-white text-xs">
           <thead className="bg-[#c0c0c0] sticky top-0">
             <tr>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('vehicle_plate_id')}
-              >
-                vehicle_plate_id {sortColumn === 'vehicle_plate_id' && (sortOrder === 'asc' ? 'â†‘' : 'â†“')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('emirates_id')}
-              >
-                emirates_id {sortColumn === 'emirates_id' && (sortOrder === 'asc' ? 'â†‘' : 'â†“')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('registration_year')}
-              >
-                registration_year {sortColumn === 'registration_year' && (sortOrder === 'asc' ? 'â†‘' : 'â†“')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('colour_of_car')}
-              >
-                colour_of_car {sortColumn === 'colour_of_car' && (sortOrder === 'asc' ? 'â†‘' : 'â†“')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('date')}
-              >
-                date {sortColumn === 'date' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('time')}
-              >
-                time {sortColumn === 'time' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">vehicle_plate_id</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">emirates_id</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">registration_year</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">colour_of_car</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">date</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">time</th>
             </tr>
           </thead>
           <tbody>
-            {sortedData.map((record, index) => (
+            {displayData.map((record, index) => (
               <tr 
                 key={record.vehicle_plate_id} 
                 className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-yellow-100`}

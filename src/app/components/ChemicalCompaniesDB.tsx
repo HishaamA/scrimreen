@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { Building2 } from 'lucide-react';
 
 interface CorporateRecord {
@@ -31,27 +31,14 @@ const CORPORATE_REGISTRY: CorporateRecord[] = [
 ];
 
 export function ChemicalCompaniesDB() {
-  const [sortColumn, setSortColumn] = useState<keyof CorporateRecord>('company_id');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-
-  const sortedData = [...CORPORATE_REGISTRY].sort((a, b) => {
-    const aVal = a[sortColumn];
-    const bVal = b[sortColumn];
-    if (sortOrder === 'asc') {
-      return aVal > bVal ? 1 : -1;
-    } else {
-      return aVal < bVal ? 1 : -1;
+  const displayData = useMemo(() => {
+    const arr = [...CORPORATE_REGISTRY];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-  });
-
-  const handleSort = (column: keyof CorporateRecord) => {
-    if (sortColumn === column) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortColumn(column);
-      setSortOrder('asc');
-    }
-  };
+    return arr;
+  }, []);
 
   return (
     <div className="flex flex-col h-full bg-[#c0c0c0]">
@@ -78,28 +65,13 @@ export function ChemicalCompaniesDB() {
         <table className="w-full border-2 border-[#808080] bg-white text-xs">
           <thead className="bg-[#c0c0c0] sticky top-0">
             <tr>
-              <th
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('company_id')}
-              >
-                company_id {sortColumn === 'company_id' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
-              <th
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('company_name')}
-              >
-                company_name {sortColumn === 'company_name' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
-              <th
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('ceo_name')}
-              >
-                ceo_name {sortColumn === 'ceo_name' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">company_id</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">company_name</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">ceo_name</th>
             </tr>
           </thead>
           <tbody>
-            {sortedData.map((record, index) => (
+            {displayData.map((record, index) => (
               <tr
                 key={record.company_id}
                 className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-yellow-100`}

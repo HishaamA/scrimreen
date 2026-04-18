@@ -1,5 +1,5 @@
-﻿import { User } from 'lucide-react';
-import { useState } from 'react';
+﻿import { useMemo } from 'react';
+import { User } from 'lucide-react';
 
 interface SuspectRecord {
   emirates_id: string;
@@ -20,7 +20,7 @@ const SUSPECTS_DATA: SuspectRecord[] = [
   { emirates_id: '784-1988-8901234-8', name: 'Marina Popov', age: 38, occupation: 'Restaurant Owner', location: 'Jumeirah' },
   { emirates_id: '784-1978-9012345-9', name: 'Hassan Al-Zaabi', age: 45, occupation: 'Bank Manager', location: 'Business Bay' },
   { emirates_id: '784-1996-0123456-0', name: 'Aisha Mohammed', age: 27, occupation: 'Teacher', location: 'Khalidiya' },
-  { emirates_id: '784-2001-1111111-1', name: 'Simreen Siraj Shehzadi', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
+  { emirates_id: '784-2001-1111111-1', name: 'Ben Dover', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
   { emirates_id: '784-2000-2222222-2', name: 'Hishaam Abdul Razik', age: 25, occupation: 'Senior Detective', location: 'Abu Dhabi' },
   { emirates_id: '784-1980-3333333-3', name: 'Omar Al-Rashidi', age: 43, occupation: 'Truck Driver', location: 'Sharjah' },
   { emirates_id: '784-1993-4444444-4', name: 'Nour Binte Hamdan', age: 30, occupation: 'Lab Technician', location: 'Al Ain' },
@@ -33,27 +33,14 @@ const SUSPECTS_DATA: SuspectRecord[] = [
 ];
 
 export function SuspectsDB() {
-  const [sortColumn, setSortColumn] = useState<keyof SuspectRecord>('name');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-
-  const sortedData = [...SUSPECTS_DATA].sort((a, b) => {
-    const aVal = a[sortColumn];
-    const bVal = b[sortColumn];
-    if (sortOrder === 'asc') {
-      return aVal > bVal ? 1 : -1;
-    } else {
-      return aVal < bVal ? 1 : -1;
+  const displayData = useMemo(() => {
+    const arr = [...SUSPECTS_DATA];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-  });
-
-  const handleSort = (column: keyof SuspectRecord) => {
-    if (sortColumn === column) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortColumn(column);
-      setSortOrder('asc');
-    }
-  };
+    return arr;
+  }, []);
 
   return (
     <div className="flex flex-col h-full bg-[#c0c0c0]">
@@ -80,40 +67,15 @@ export function SuspectsDB() {
         <table className="w-full border-2 border-[#808080] bg-white text-xs">
           <thead className="bg-[#c0c0c0] sticky top-0">
             <tr>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('emirates_id')}
-              >
-                emirates_id {sortColumn === 'emirates_id' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('name')}
-              >
-                name {sortColumn === 'name' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('age')}
-              >
-                age {sortColumn === 'age' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('occupation')}
-              >
-                occupation {sortColumn === 'occupation' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
-              <th 
-                className="border-2 border-[#808080] px-2 py-2 font-bold cursor-pointer hover:bg-[#dfdfdf]"
-                onClick={() => handleSort('location')}
-              >
-                location {sortColumn === 'location' && (sortOrder === 'asc' ? '↑' : '↓')}
-              </th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">emirates_id</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">name</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">age</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">occupation</th>
+              <th className="border-2 border-[#808080] px-2 py-2 font-bold">location</th>
             </tr>
           </thead>
           <tbody>
-            {sortedData.map((record, index) => (
+            {displayData.map((record, index) => (
               <tr 
                 key={record.emirates_id} 
                 className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-yellow-100`}
