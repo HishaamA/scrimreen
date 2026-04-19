@@ -8,49 +8,49 @@ interface SQLQueryTerminalProps {
 
 // Default database used when no case is provided (or for case-001)
 const DEFAULT_SUSPECTS = [
-  { emirates_id: '784-1992-1234567-1', name: 'Ahmed Khalfan', age: 34, occupation: 'Construction Worker', location: 'Jebel Ali' },
-  { emirates_id: '784-1988-2345678-2', name: 'Fatima Al-Mazrui', age: 35, occupation: 'Business Owner', location: 'Al Reem Island' },
-  { emirates_id: '784-1972-3456789-3', name: 'Mohammed Hassan', age: 51, occupation: 'Factory Owner', location: 'Mussafah' },
-  { emirates_id: '784-1997-4567890-4', name: 'Sarah Mitchell', age: 29, occupation: 'Environmental Officer', location: 'Dubai Marina' },
-  { emirates_id: '784-1984-5678901-5', name: 'Simreen Siraj', age: 42, occupation: 'Business Owner', location: 'Mussafah Industrial Zone' },
-  { emirates_id: '784-1995-6789012-6', name: 'Layla Ibrahim', age: 28, occupation: 'Shop Manager', location: 'Khalifa City' },
-  { emirates_id: '784-1981-7890123-7', name: 'Khalid Al-Mansoori', age: 45, occupation: 'Delivery Driver', location: 'Al Barsha' },
-  { emirates_id: '784-1988-8901234-8', name: 'Marina Popov', age: 38, occupation: 'Restaurant Owner', location: 'Jumeirah' },
-  { emirates_id: '784-1978-9012345-9', name: 'Hassan Al-Zaabi', age: 45, occupation: 'Bank Manager', location: 'Business Bay' },
-  { emirates_id: '784-1996-0123456-0', name: 'Aisha Mohammed', age: 27, occupation: 'Teacher', location: 'Khalidiya' },
-  { emirates_id: '784-2001-1111111-1', name: 'Ben Dover', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
-  { emirates_id: '784-2000-2222222-2', name: 'Hishaam Abdul Razik', age: 25, occupation: 'Senior Detective', location: 'Abu Dhabi' },
-  { emirates_id: '784-1980-3333333-3', name: 'Omar Al-Rashidi', age: 43, occupation: 'Truck Driver', location: 'Sharjah' },
-  { emirates_id: '784-1993-4444444-4', name: 'Nour Binte Hamdan', age: 30, occupation: 'Lab Technician', location: 'Al Ain' },
-  { emirates_id: '784-1975-5555555-5', name: 'Tariq Bin Salim', age: 48, occupation: 'Warehouse Supervisor', location: 'Jebel Ali' },
-  { emirates_id: '784-1990-6666666-6', name: 'Priya Subramaniam', age: 33, occupation: 'Logistics Coordinator', location: 'Dubai Silicon Oasis' },
-  { emirates_id: '784-1986-7777777-7', name: 'Yusuf Al-Blooshi', age: 37, occupation: 'Civil Engineer', location: 'Abu Dhabi' },
-  { emirates_id: '784-1998-8888888-8', name: 'Reem Al-Nuaimi', age: 25, occupation: 'Environmental Inspector', location: 'Yas Island' },
-  { emirates_id: '784-1970-9999999-9', name: 'Bharat Menon', age: 53, occupation: 'Chemical Plant Manager', location: 'Mussafah' },
-  { emirates_id: '784-1994-0000001-0', name: 'Zineb Chaoui', age: 29, occupation: 'Customs Officer', location: 'Jebel Ali Port' },
+  { emirates_id: '784199212345671', name: 'Ahmed Khalfan', age: 34, occupation: 'Construction Worker', location: 'Jebel Ali' },
+  { emirates_id: '784198823456782', name: 'Fatima Al-Mazrui', age: 35, occupation: 'Business Owner', location: 'Al Reem Island' },
+  { emirates_id: '784197234567893', name: 'Mohammed Hassan', age: 51, occupation: 'Factory Owner', location: 'Mussafah' },
+  { emirates_id: '784199745678904', name: 'Sarah Mitchell', age: 29, occupation: 'Environmental Officer', location: 'Dubai Marina' },
+  { emirates_id: '784198456789015', name: 'Simreen Siraj', age: 42, occupation: 'Business Owner', location: 'Mussafah Industrial Zone' },
+  { emirates_id: '784199567890126', name: 'Layla Ibrahim', age: 28, occupation: 'Shop Manager', location: 'Khalifa City' },
+  { emirates_id: '784198178901237', name: 'Khalid Al-Mansoori', age: 45, occupation: 'Delivery Driver', location: 'Al Barsha' },
+  { emirates_id: '784198889012348', name: 'Marina Popov', age: 38, occupation: 'Restaurant Owner', location: 'Jumeirah' },
+  { emirates_id: '784197890123459', name: 'Hassan Al-Zaabi', age: 45, occupation: 'Bank Manager', location: 'Business Bay' },
+  { emirates_id: '784199601234560', name: 'Aisha Mohammed', age: 27, occupation: 'Teacher', location: 'Khalidiya' },
+  { emirates_id: '784200111111111', name: 'Ben Dover', age: 24, occupation: 'Lead Detective', location: 'Dubai' },
+  { emirates_id: '784200022222222', name: 'Hishaam Abdul Razik', age: 25, occupation: 'Senior Detective', location: 'Abu Dhabi' },
+  { emirates_id: '784198033333333', name: 'Omar Al-Rashidi', age: 43, occupation: 'Truck Driver', location: 'Sharjah' },
+  { emirates_id: '784199344444444', name: 'Nour Binte Hamdan', age: 30, occupation: 'Lab Technician', location: 'Al Ain' },
+  { emirates_id: '784197555555555', name: 'Tariq Bin Salim', age: 48, occupation: 'Warehouse Supervisor', location: 'Jebel Ali' },
+  { emirates_id: '784199066666666', name: 'Priya Subramaniam', age: 33, occupation: 'Logistics Coordinator', location: 'Dubai Silicon Oasis' },
+  { emirates_id: '784198677777777', name: 'Yusuf Al-Blooshi', age: 37, occupation: 'Civil Engineer', location: 'Abu Dhabi' },
+  { emirates_id: '784199888888888', name: 'Reem Al-Nuaimi', age: 25, occupation: 'Environmental Inspector', location: 'Yas Island' },
+  { emirates_id: '784197099999999', name: 'Bharat Menon', age: 53, occupation: 'Chemical Plant Manager', location: 'Mussafah' },
+  { emirates_id: '784199400000010', name: 'Zineb Chaoui', age: 29, occupation: 'Customs Officer', location: 'Jebel Ali Port' },
 ];
 
 const DEFAULT_VEHICLE_REGISTRY = [
-  { vehicle_plate_id: 'B58912', emirates_id: '784-1992-1234567-1', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1834' },
-  { vehicle_plate_id: 'A12345', emirates_id: '784-1988-2345678-2', registration_year: 2022, colour_of_car: 'Black', date: '2026-03-29', time: '1812' },
-  { vehicle_plate_id: 'C98765', emirates_id: '784-1972-3456789-3', registration_year: 2020, colour_of_car: 'Silver', date: '2026-03-29', time: '1845' },
-  { vehicle_plate_id: 'D54321', emirates_id: '784-1997-4567890-4', registration_year: 2023, colour_of_car: 'Blue', date: '2026-03-29', time: '1758' },
-  { vehicle_plate_id: 'E11223', emirates_id: '784-1984-5678901-5', registration_year: 2019, colour_of_car: 'Red', date: '2026-03-29', time: '1902' },
-  { vehicle_plate_id: 'F67890', emirates_id: '784-1995-6789012-6', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1823' },
-  { vehicle_plate_id: 'G24680', emirates_id: '784-1981-7890123-7', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1856' },
-  { vehicle_plate_id: 'H13579', emirates_id: '784-1988-8901234-8', registration_year: 2020, colour_of_car: 'Green', date: '2026-03-29', time: '1741' },
-  { vehicle_plate_id: 'I97531', emirates_id: '784-1978-9012345-9', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1915' },
-  { vehicle_plate_id: 'J86420', emirates_id: '784-1996-0123456-0', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1807' },
-  { vehicle_plate_id: 'S11111', emirates_id: '784-2001-1111111-1', registration_year: 2024, colour_of_car: 'Gold', date: '2026-03-29', time: '0800' },
-  { vehicle_plate_id: 'H22222', emirates_id: '784-2000-2222222-2', registration_year: 2024, colour_of_car: 'Silver', date: '2026-03-29', time: '0815' },
-  { vehicle_plate_id: 'K75319', emirates_id: '784-1987-1122334-1', registration_year: 2022, colour_of_car: 'Silver', date: '2026-03-29', time: '1839' },
-  { vehicle_plate_id: 'L64208', emirates_id: '784-1993-2233445-2', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1752' },
-  { vehicle_plate_id: 'M53197', emirates_id: '784-1984-3344556-3', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1908' },
-  { vehicle_plate_id: 'N42086', emirates_id: '784-1991-4455667-4', registration_year: 2020, colour_of_car: 'Red', date: '2026-03-29', time: '1828' },
-  { vehicle_plate_id: 'O31975', emirates_id: '784-1979-5566778-5', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1851' },
-  { vehicle_plate_id: 'P20864', emirates_id: '784-1997-6677889-6', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1746' },
-  { vehicle_plate_id: 'Q19753', emirates_id: '784-1986-7788990-7', registration_year: 2023, colour_of_car: 'Silver', date: '2026-03-29', time: '1921' },
-  { vehicle_plate_id: 'R08642', emirates_id: '784-1989-8899001-8', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1814' },
+  { vehicle_plate_id: 'B58912', emirates_id: '784199212345671', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1834' },
+  { vehicle_plate_id: 'A12345', emirates_id: '784198823456782', registration_year: 2022, colour_of_car: 'Black', date: '2026-03-29', time: '1812' },
+  { vehicle_plate_id: 'C98765', emirates_id: '784197234567893', registration_year: 2020, colour_of_car: 'Silver', date: '2026-03-29', time: '1845' },
+  { vehicle_plate_id: 'D54321', emirates_id: '784199745678904', registration_year: 2023, colour_of_car: 'Blue', date: '2026-03-29', time: '1758' },
+  { vehicle_plate_id: 'E11223', emirates_id: '784198456789015', registration_year: 2019, colour_of_car: 'Red', date: '2026-03-29', time: '1902' },
+  { vehicle_plate_id: 'F67890', emirates_id: '784199567890126', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1823' },
+  { vehicle_plate_id: 'G24680', emirates_id: '784198178901237', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1856' },
+  { vehicle_plate_id: 'H13579', emirates_id: '784198889012348', registration_year: 2020, colour_of_car: 'Green', date: '2026-03-29', time: '1741' },
+  { vehicle_plate_id: 'I97531', emirates_id: '784197890123459', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1915' },
+  { vehicle_plate_id: 'J86420', emirates_id: '784199601234560', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1807' },
+  { vehicle_plate_id: 'S11111', emirates_id: '784200111111111', registration_year: 2024, colour_of_car: 'Gold', date: '2026-03-29', time: '0800' },
+  { vehicle_plate_id: 'H22222', emirates_id: '784200022222222', registration_year: 2024, colour_of_car: 'Silver', date: '2026-03-29', time: '0815' },
+  { vehicle_plate_id: 'K75319', emirates_id: '784198711223341', registration_year: 2022, colour_of_car: 'Silver', date: '2026-03-29', time: '1839' },
+  { vehicle_plate_id: 'L64208', emirates_id: '784199322334452', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1752' },
+  { vehicle_plate_id: 'M53197', emirates_id: '784198433445563', registration_year: 2023, colour_of_car: 'Black', date: '2026-03-29', time: '1908' },
+  { vehicle_plate_id: 'N42086', emirates_id: '784199144556674', registration_year: 2020, colour_of_car: 'Red', date: '2026-03-29', time: '1828' },
+  { vehicle_plate_id: 'O31975', emirates_id: '784197955667785', registration_year: 2021, colour_of_car: 'White', date: '2026-03-29', time: '1851' },
+  { vehicle_plate_id: 'P20864', emirates_id: '784199766778896', registration_year: 2022, colour_of_car: 'Gray', date: '2026-03-29', time: '1746' },
+  { vehicle_plate_id: 'Q19753', emirates_id: '784198677889907', registration_year: 2023, colour_of_car: 'Silver', date: '2026-03-29', time: '1921' },
+  { vehicle_plate_id: 'R08642', emirates_id: '784198988990018', registration_year: 2019, colour_of_car: 'Blue', date: '2026-03-29', time: '1814' },
 ];
 
 // Case-002 specific tables
@@ -180,47 +180,65 @@ export function SQLQueryTerminal({ currentCase, onQueryExecuted }: SQLQueryTermi
   };
 
   const handleSelectQuery = (query: string) => {
-    // Check for JOIN syntax: SELECT ... FROM t1 JOIN t2 ON t1.col = t2.col
-    const joinMatch = query.match(/from\s+(\w+)\s+(?:inner\s+)?join\s+(\w+)\s+on\s+([\w.]+)\s*=\s*([\w.]+)/);
+    // Check for JOIN with ON: SELECT ... FROM t1 JOIN t2 ON t1.col = t2.col
+    const joinOnMatch = query.match(/from\s+(\w+)\s+(?:inner\s+)?join\s+(\w+)\s+on\s+([\w.]+)\s*=\s*([\w.]+)/);
+    // Also support JOIN without ON (cross join filtered by WHERE)
+    const joinNoOnMatch = !joinOnMatch ? query.match(/from\s+(\w+)\s+(?:inner\s+)?join\s+(\w+)/) : null;
+    const joinMatch = joinOnMatch || joinNoOnMatch;
 
     let filteredData: any[];
     let tableName: string;
 
     if (joinMatch) {
-      const [, table1Name, table2Name, onLeft, onRight] = joinMatch;
+      const table1Name = joinMatch[1];
+      const table2Name = joinMatch[2];
       const table1 = MOCK_DATABASE[table1Name as keyof typeof MOCK_DATABASE];
       const table2 = MOCK_DATABASE[table2Name as keyof typeof MOCK_DATABASE];
 
       if (!table1) { setError(`Table '${table1Name}' does not exist. Use SHOW TABLES to see available tables.`); return; }
       if (!table2) { setError(`Table '${table2Name}' does not exist. Use SHOW TABLES to see available tables.`); return; }
 
-      // Resolve qualified column references (table.column)
-      const resolveJoinCol = (qualified: string, defaultTable: string) => {
-        const parts = qualified.split('.');
-        return parts.length > 1 ? { table: parts[0], col: parts[1] } : { table: defaultTable, col: parts[0] };
+      const mergePrefixed = (row1: any, row2: any) => {
+        const merged: any = {};
+        for (const key of Object.keys(row1)) {
+          merged[`${table1Name}.${key}`] = row1[key];
+        }
+        for (const key of Object.keys(row2)) {
+          merged[`${table2Name}.${key}`] = row2[key];
+        }
+        return merged;
       };
 
-      const left = resolveJoinCol(onLeft, table1Name);
-      const right = resolveJoinCol(onRight, table2Name);
+      if (joinOnMatch) {
+        const [, , , onLeft, onRight] = joinOnMatch;
+        const resolveJoinCol = (qualified: string, defaultTable: string) => {
+          const parts = qualified.split('.');
+          return parts.length > 1 ? { table: parts[0], col: parts[1] } : { table: defaultTable, col: parts[0] };
+        };
 
-      // Perform inner join
-      filteredData = [];
-      (table1 as any[]).forEach(row1 => {
-        (table2 as any[]).forEach(row2 => {
-          const val1 = left.table === table1Name ? row1[left.col] : row2[left.col];
-          const val2 = right.table === table2Name ? row2[right.col] : row1[right.col];
-          if (String(val1) === String(val2)) {
-            const merged: any = {};
-            for (const key of Object.keys(row1)) {
-              merged[`${table1Name}.${key}`] = row1[key];
+        const left = resolveJoinCol(onLeft, table1Name);
+        const right = resolveJoinCol(onRight, table2Name);
+
+        // Perform inner join on ON condition
+        filteredData = [];
+        (table1 as any[]).forEach(row1 => {
+          (table2 as any[]).forEach(row2 => {
+            const val1 = left.table === table1Name ? row1[left.col] : row2[left.col];
+            const val2 = right.table === table2Name ? row2[right.col] : row1[right.col];
+            if (String(val1) === String(val2)) {
+              filteredData.push(mergePrefixed(row1, row2));
             }
-            for (const key of Object.keys(row2)) {
-              merged[`${table2Name}.${key}`] = row2[key];
-            }
-            filteredData.push(merged);
-          }
+          });
         });
-      });
+      } else {
+        // Cross join (no ON clause) - WHERE will filter results
+        filteredData = [];
+        (table1 as any[]).forEach(row1 => {
+          (table2 as any[]).forEach(row2 => {
+            filteredData.push(mergePrefixed(row1, row2));
+          });
+        });
+      }
 
       tableName = `${table1Name} JOIN ${table2Name}`;
     } else {
@@ -447,7 +465,7 @@ export function SQLQueryTerminal({ currentCase, onQueryExecuted }: SQLQueryTermi
       {/* Query Input */}
       <div className="p-3 border-b-2 border-green-400">
         <div className="mb-2 text-xs">
-          <span className="text-yellow-400">Available Tables:</span> suspects, vehicle_registry
+          <span className="text-yellow-400">Available Tables:</span> {Object.keys(MOCK_DATABASE).join(', ')}
         </div>
         <textarea
           value={query}
