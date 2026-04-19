@@ -16,7 +16,7 @@ export function AudioTranscriptModal({ isSuccess, onClose, caseId }: AudioTransc
   const getAudioSrc = () => {
     if (caseId === 'case-001' && isSuccess) return '/audio/01end.mp3';
     if (caseId === 'case-002' && isSuccess) return '/audio/02end.mp3';
-    return isSuccess ? '/audio/success-boss.mp3' : '/audio/failure-boss.mp3';
+    return isSuccess ? '/audio/success-boss.mp3' : '/audio/failcase.mp3';
   };
 
   useEffect(() => {

@@ -155,7 +155,7 @@ export function SQLQueryTerminal({ currentCase, onQueryExecuted }: SQLQueryTermi
     if (!query.trim()) return;
 
     setError('');
-    const normalizedQuery = query.trim().replace(/;\s*$/, '').toLowerCase();
+    const normalizedQuery = query.trim().replace(/;\s*$/, '').replace(/\s+/g, ' ').toLowerCase();
 
     try {
       // Add to history
@@ -377,6 +377,12 @@ export function SQLQueryTerminal({ currentCase, onQueryExecuted }: SQLQueryTermi
     if (eqMatch) {
       const rowVal = getColumnValue(row, eqMatch[1]);
       const compareVal = eqMatch[2].trim();
+      // Check if right side is a column reference (e.g., table.column)
+      const rightColVal = getColumnValue(row, compareVal);
+      if (rightColVal !== undefined) {
+        if (rowVal === undefined || rowVal === null) return false;
+        return String(rowVal).toLowerCase() === String(rightColVal).toLowerCase();
+      }
       if (rowVal === undefined || rowVal === null) return false;
       return String(rowVal).toLowerCase() === compareVal.toLowerCase();
     }

@@ -137,7 +137,7 @@ export const cases: Case[] = [
     title: 'The Mangrove Midnight Spiller',
     description: 'Environmental disaster at Jubail Mangrove Park! A tanker truck dumped unauthorized industrial solvent directly into the mangrove root system under cover of darkness.',
     briefing: 'Detectives, we have a Code Red at the Jubail Mangrove Park. Someone backed a tanker truck up to the water under cover of darkness and dumped industrial solvent right into the mangrove root system! Park Rangers found a burner phone dropped in the mud with an encrypted message.\n\nYour mission:\n1. Examine the EVIDENCE FILES — one contains an encrypted message, another contains a clue to the cipher shift, and a third is a traffic camera screenshot.\n2. Use the DECRYPTION SOFTWARE (Python) with caesar_cipher() to decrypt the message. The decrypted text reveals a chemical batch code.\n3. Open the SQL TERMINAL and run SHOW TABLES to see the available databases. Query the chemical_imports table to find which companies imported that batch.\n4. Multiple companies will match — use the traffic camera evidence and the fleet_logs table to narrow down which company had a vehicle near Jubail at the time of the crime.\n5. Finally, query the corporate_registry table to find the CEO of the guilty company.\n6. When you are confident, click ACCUSE and enter the suspect\'s full name.',
-    difficulty: 1,
+    difficulty: 3,
     culprit: 'Simreen Siraj',
     type: 'Illegal Chemical Dumping',
     location: 'Jubail Mangrove Park',

@@ -80,38 +80,38 @@ const RETRO_PAGES = {
           <tr bgcolor="#008080">
             <th>Case ID</th>
             <th>Title</th>
-            <th>Perpetrator</th>
             <th>Date Solved</th>
+            <th>Status</th>
           </tr>
           <tr>
             <td>ENV-001</td>
             <td>The E11 Plastic Peril</td>
-            <td>Ahmed Khalfan</td>
-            <td bgcolor="#90EE90">2026-03-29</td>
+            <td>2026-03-29</td>
+            <td bgcolor="#90EE90">SOLVED</td>
           </tr>
           <tr>
             <td>ENV-002</td>
             <td>The Great Haq al Laila Candy Heist</td>
-            <td>Aisha Mohammed</td>
-            <td bgcolor="#90EE90">2026-03-26</td>
+            <td>2026-03-26</td>
+            <td bgcolor="#90EE90">SOLVED</td>
           </tr>
           <tr>
             <td>ENV-003</td>
             <td>The Palm Jumeirah Ding-Dong-Ditch Crisis</td>
-            <td>Youssef Ibrahim</td>
-            <td bgcolor="#90EE90">2026-03-25</td>
+            <td>2026-03-25</td>
+            <td bgcolor="#90EE90">SOLVED</td>
           </tr>
           <tr>
             <td>ENV-004</td>
             <td>The Dubai Mall Ice Cream Spillage</td>
-            <td>Marcus Chen</td>
-            <td bgcolor="#90EE90">2026-03-25</td>
+            <td>2026-03-25</td>
+            <td bgcolor="#90EE90">SOLVED</td>
           </tr>
           <tr>
             <td>ENV-005</td>
             <td>The Marina Walk Pigeon Feeding Fiasco</td>
-            <td>Fatima Al-Zaabi</td>
-            <td bgcolor="#90EE90">2026-03-20</td>
+            <td>2026-03-20</td>
+            <td bgcolor="#90EE90">SOLVED</td>
           </tr>
         </table>
         

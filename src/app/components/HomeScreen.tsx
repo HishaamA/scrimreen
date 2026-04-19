@@ -151,8 +151,8 @@ export function HomeScreen({ cases, completedCases, onStart, onOpenManual }: Hom
                 >
                   <BookOpen className="w-6 h-6" />
                   <div className="text-left flex-1">
-                    <div className="font-bold">Python for Dummies</div>
-                    <div className="text-xs">Learn Python basics before you start</div>
+                    <div className="font-bold">Decryption for Dummies</div>
+                    <div className="text-xs">Learn decryption techniques before you start</div>
                   </div>
                 </button>
                 <button

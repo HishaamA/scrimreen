@@ -148,7 +148,7 @@ export default function App() {
         createWindow(type, 'Internet Explorer - Detective Database', 800, 600);
         break;
       case 'pythonManual':
-        createWindow(type, 'Python for Dummies - Detective Edition', 900, 650);
+        createWindow(type, 'Decryption for Dummies - Detective Edition', 900, 650);
         break;
       case 'sqlManual':
         createWindow(type, 'SQL for Dummies - Detective Edition', 900, 650);
@@ -288,7 +288,7 @@ export default function App() {
   const handleAccuse = (suspectName: string) => {
     if (!selectedCase) return;
     setAccusedSuspect(suspectName);
-    const correct = suspectName === selectedCase.culprit;
+    const correct = suspectName.toLowerCase() === selectedCase.culprit.toLowerCase();
     setIsCorrect(correct);
     
     // Only unlock next case if accusation is correct
@@ -592,7 +592,7 @@ export default function App() {
                 autoFocus
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
-                    const isValid = VALID_SUSPECTS.includes(accuseInput.trim());
+                    const isValid = VALID_SUSPECTS.some(s => s.toLowerCase() === accuseInput.trim().toLowerCase());
                     setIsValidSuspect(isValid);
                     setShowAccuseModal(false);
                     setShowArrestWarrant(true);
@@ -609,7 +609,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => {
-                  const isValid = VALID_SUSPECTS.includes(accuseInput.trim());
+                  const isValid = VALID_SUSPECTS.some(s => s.toLowerCase() === accuseInput.trim().toLowerCase());
                   setIsValidSuspect(isValid);
                   setShowAccuseModal(false);
                   setShowArrestWarrant(true);
@@ -639,7 +639,7 @@ export default function App() {
             setShowProcessing(true);
             // Store the accused suspect but don't call handleAccuse yet
             setAccusedSuspect(accuseInput.trim());
-            const correct = accuseInput.trim() === selectedCase.culprit;
+            const correct = accuseInput.trim().toLowerCase() === selectedCase.culprit.toLowerCase();
             setIsCorrect(correct);
 
             // Only unlock next case if accusation is correct
@@ -659,6 +659,8 @@ export default function App() {
             setShowProcessing(false);
             setAccuseInput('');
             if (isCorrect) {
+              // Play success sound effect
+              try { new Audio('/audio/success.mp3').play(); } catch {}
               setShowCongrats(true);
             } else {
               setShowAudioTranscript(true);
