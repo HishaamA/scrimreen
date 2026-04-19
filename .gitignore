@@ -4,10 +4,8 @@ node_modules/
 # Build outputs
 dist/
 
-# Electron build artifacts (unpacked app bundles - regeneratable)
-release/mac-arm64/
-release/win-unpacked/
-release/linux-unpacked/
+# Electron build artifacts (distributed via GitHub Releases)
+release/
 
 # OS files
 .DS_Store
