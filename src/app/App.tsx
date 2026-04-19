@@ -609,7 +609,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => {
-                  const isValid = VALID_SUSPECTS.some(s => s.toLowerCase() === accuseInput.trim().toLowerCase());
+                  const isValid = accuseInput.trim().length > 0;
                   setIsValidSuspect(isValid);
                   setShowAccuseModal(false);
                   setShowArrestWarrant(true);
