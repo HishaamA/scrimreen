@@ -3,6 +3,13 @@
 
 A retro-styled detective puzzle game where you solve environmental crimes in the UAE using SQL queries, Python decryption, and database investigation tools.
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Case Selection](images/screenshot-homescreen.png) | ![Boot Sequence](images/screenshot-boot.png) |
+| ![Case Briefing](images/screenshot-briefing.png) | ![Gameplay](images/screenshot-gameplay.png) |
+
 ## About the Game
 
 Players investigate cases by:
