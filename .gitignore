@@ -4,7 +4,7 @@ node_modules/
 # Build outputs
 dist/
 
-# Electron build artifacts (distributed via GitHub Releases)
+# Electron build artifacts - entire release folder (distributables go to GitHub Releases)
 release/
 
 # OS files
