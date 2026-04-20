@@ -2,14 +2,27 @@ import { useState, useRef, useEffect } from 'react';
 import { Play, Terminal, Trash2, RotateCcw } from 'lucide-react';
 
 export function PythonTerminal() {
-  const [code, setCode] = useState('# Python Terminal - Enviro-Crimes Data Analysis\n# Use Python to decrypt, decode, and analyze data\n\n# Example functions available:\n# decrypt_rot13(text) - ROT13 decryption\n# decode_base64(text) - Base64 decoding\n# format_data(data) - Format and clean data\n# reverse_string(text) - Reverse a string\n\n');
+  const [code, setCode] = useState('# Python Terminal - Enviro-Crimes Data Analysis\n# Use Python to decrypt, decode, and analyze data\n\n# Example functions available:\n# decrypt_rot13(text) - ROT13 decryption\n# decode_base64(text) - Base64 decoding\n# caesar_cipher(text, shift) - Caesar cipher\n# reverse_string(text) - Reverse a string\n\n');
   const [output, setOutput] = useState<string[]>([
-    '🐍 Python 3.11 - UAEPD Crime Analysis Terminal',
+    '🐍 Python 3.12 (Brython) - UAEPD Crime Analysis Terminal',
     'Type your code and press "Run Code" to execute',
-    '-' .repeat(60),
+    '-'.repeat(60),
     ''
   ]);
+  const [history, setHistory] = useState<string[]>([]);
+  const [brythonReady, setBrythonReady] = useState(() => !!(window as any).brython_run_code);
   const outputRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (brythonReady) return;
+    const id = setInterval(() => {
+      if ((window as any).brython_run_code) {
+        setBrythonReady(true);
+        clearInterval(id);
+      }
+    }, 150);
+    return () => clearInterval(id);
+  }, [brythonReady]);
 
   useEffect(() => {
     if (outputRef.current) {
@@ -17,162 +30,42 @@ export function PythonTerminal() {
     }
   }, [output]);
 
-  // Helper functions that can be called in Python code
-  const rot13 = (str: string): string => {
-    return str.replace(/[a-zA-Z]/g, (char) => {
-      const start = char <= 'Z' ? 65 : 97;
-      return String.fromCharCode(((char.charCodeAt(0) - start + 13) % 26) + start);
-    });
-  };
-
-  const base64Decode = (str: string): string => {
-    try {
-      return atob(str);
-    } catch {
-      return 'Error: Invalid base64 string';
-    }
-  };
-
-  const reverseString = (str: string): string => {
-    return str.split('').reverse().join('');
-  };
-
-  const caesarCipher = (str: string, shift: number): string => {
-    return str.replace(/[a-zA-Z]/g, (char) => {
-      const start = char <= 'Z' ? 65 : 97;
-      return String.fromCharCode(((char.charCodeAt(0) - start + shift) % 26) + start);
-    });
-  };
-
   const executePython = () => {
     const timestamp = new Date().toLocaleTimeString();
-    const newOutput = [`>>> [${timestamp}] Executing Python code...`, ''];
+    const runCode = (window as any).brython_run_code;
 
-    try {
-      // Check for print statements
-      const printMatches = code.matchAll(/print\((.*?)\)/gs);
-      let hasOutput = false;
-
-      for (const match of printMatches) {
-        hasOutput = true;
-        const expression = match[1].trim();
-        
-        // Evaluate the expression
-        try {
-          // Check for function calls
-          if (expression.includes('decrypt_rot13')) {
-            const textMatch = expression.match(/decrypt_rot13\(['"](.+?)['"]\)/);
-            if (textMatch) {
-              newOutput.push(rot13(textMatch[1]));
-            }
-          } else if (expression.includes('decode_base64')) {
-            const textMatch = expression.match(/decode_base64\(['"](.+?)['"]\)/);
-            if (textMatch) {
-              newOutput.push(base64Decode(textMatch[1]));
-            }
-          } else if (expression.includes('reverse_string')) {
-            const textMatch = expression.match(/reverse_string\(['"](.+?)['"]\)/);
-            if (textMatch) {
-              newOutput.push(reverseString(textMatch[1]));
-            }
-          } else if (expression.includes('caesar_cipher')) {
-            const match = expression.match(/caesar_cipher\(['"](.+?)['"],\s*(\d+)\)/);
-            if (match) {
-              newOutput.push(caesarCipher(match[1], parseInt(match[2])));
-            }
-          } else if (expression.startsWith('"') || expression.startsWith("'")) {
-            // Plain string
-            newOutput.push(expression.replace(/['"]/g, ''));
-          } else {
-            // Try to evaluate as math
-            const result = eval(expression);
-            newOutput.push(String(result));
-          }
-        } catch (e) {
-          newOutput.push(`Error evaluating: ${expression}`);
-        }
-      }
-
-      // Check for variable assignments
-      const varMatches = code.matchAll(/(\w+)\s*=\s*(.+)/g);
-      const variables: { [key: string]: any } = {};
-      
-      for (const match of varMatches) {
-        const [, varName, value] = match;
-        if (value.includes('decrypt_rot13')) {
-          const textMatch = value.match(/decrypt_rot13\(['"](.+?)['"]\)/);
-          if (textMatch) variables[varName] = rot13(textMatch[1]);
-        } else if (value.includes('decode_base64')) {
-          const textMatch = value.match(/decode_base64\(['"](.+?)['"]\)/);
-          if (textMatch) variables[varName] = base64Decode(textMatch[1]);
-        } else if (value.startsWith('"') || value.startsWith("'")) {
-          variables[varName] = value.replace(/['"]/g, '');
-        }
-        
-        if (variables[varName]) {
-          newOutput.push(`${varName} = "${variables[varName]}"`);
-          hasOutput = true;
-        }
-      }
-
-      // Check for list/string operations
-      if (code.includes('.upper()')) {
-        const match = code.match(/(['"])(.+?)\1\.upper\(\)/);
-        if (match) {
-          newOutput.push(match[2].toUpperCase());
-          hasOutput = true;
-        }
-      }
-      
-      if (code.includes('.lower()')) {
-        const match = code.match(/(['"])(.+?)\1\.lower\(\)/);
-        if (match) {
-          newOutput.push(match[2].toLowerCase());
-          hasOutput = true;
-        }
-      }
-
-      if (code.includes('.split(')) {
-        const match = code.match(/(['"])(.+?)\1\.split\(\)/);
-        if (match) {
-          newOutput.push(JSON.stringify(match[2].split(' ')));
-          hasOutput = true;
-        }
-      }
-
-      if (!hasOutput) {
-        newOutput.push('Code executed successfully!');
-        newOutput.push('');
-        newOutput.push('💡 Tip: Use print() to see output');
-        newOutput.push('');
-        newOutput.push('Available functions:');
-        newOutput.push('  • decrypt_rot13(text)');
-        newOutput.push('  • decode_base64(text)');
-        newOutput.push('  • reverse_string(text)');
-        newOutput.push('  • caesar_cipher(text, shift)');
-        newOutput.push('');
-        newOutput.push('Example:');
-        newOutput.push('  print(decrypt_rot13("URYYB"))');
-        newOutput.push('  # Output: HELLO');
-      }
-
-    } catch (error) {
-      newOutput.push(`❌ Error: ${error}`);
-      newOutput.push('');
-      newOutput.push('Check your syntax and try again.');
+    if (!runCode) {
+      setOutput(prev => [
+        ...prev,
+        `>>> [${timestamp}] ⚠️ Python runtime is still loading, please try again.`,
+        '',
+        '-'.repeat(60),
+        '',
+      ]);
+      return;
     }
 
-    newOutput.push('');
-    newOutput.push('-'.repeat(60));
-    newOutput.push('');
+    setHistory(prev => [...prev, code]);
 
-    setOutput([...output, ...newOutput]);
-    setHistory([...history, code]);
+    const rawOutput: string = runCode(code);
+    const lines = rawOutput ? rawOutput.split('\n') : [];
+    if (lines.length > 0 && lines[lines.length - 1] === '') lines.pop();
+
+    const newOutput = [
+      `>>> [${timestamp}] Executing Python code...`,
+      '',
+      ...(lines.length > 0 ? lines : ['(no output — use print() to display results)']),
+      '',
+      '-'.repeat(60),
+      '',
+    ];
+
+    setOutput(prev => [...prev, ...newOutput]);
   };
 
   const clearOutput = () => {
     setOutput([
-      '🐍 Python 3.11 - UAEPD Crime Analysis Terminal',
+      '🐍 Python 3.12 (Brython) - UAEPD Crime Analysis Terminal',
       'Type your code and press "Run Code" to execute',
       '-'.repeat(60),
       ''
@@ -226,10 +119,11 @@ print("Reversed:", reversed_text)
           </button>
           <button
             onClick={executePython}
-            className="window-95-button px-3 py-1 text-xs flex items-center gap-1 bg-green-100 font-bold"
+            disabled={!brythonReady}
+            className={`window-95-button px-3 py-1 text-xs flex items-center gap-1 font-bold ${brythonReady ? 'bg-green-100' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
           >
             <Play className="w-3 h-3" />
-            Run Code
+            {brythonReady ? 'Run Code' : 'Loading...'}
           </button>
         </div>
       </div>
@@ -281,7 +175,7 @@ print("Reversed:", reversed_text)
 
       {/* Status Bar */}
       <div className="window-95-panel px-3 py-1 border-t-2 border-[#808080] text-xs text-gray-600 flex justify-between">
-        <span>Python 3.11.0 | UAEPD Crime Analysis System</span>
+        <span>Python 3.12 (Brython) | UAEPD Crime Analysis System</span>
         <span>Ready</span>
       </div>
     </div>

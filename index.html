@@ -6,11 +6,117 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>SIMER DETECTIVE AGENCY</title>
       <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+      <script src="https://cdn.jsdelivr.net/npm/brython@3.14.0/brython.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/brython@3.14.0/brython_stdlib.js"></script>
     </head>
 
     <body>
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
+
+      <script>
+      // Initialize Brython and expose a run_code helper to React components.
+      // We use a hidden <script type="text/python"> that brython() will pick up
+      // during its scan. The script sets window.brython_run_code.
+      (function () {
+        // The Python source that defines our helpers + run_code bridge
+        var pySrc = [
+          'from browser import window',
+          'import sys',
+          '',
+          '# Minimal stdout/stderr capture',
+          'class _Capture:',
+          '    def __init__(self):',
+          '        self._parts = []',
+          '    def write(self, s):',
+          '        self._parts.append(str(s))',
+          '    def flush(self):',
+          '        pass',
+          '    def getvalue(self):',
+          '        return "".join(self._parts)',
+          '',
+          'def base64_decode(text):',
+          '    import base64',
+          '    try:',
+          '        return base64.b64decode(text.encode()).decode("utf-8")',
+          '    except Exception:',
+          '        return "ERROR: Invalid base64 string"',
+          '',
+          'def caesar_cipher(text, shift):',
+          '    result = []',
+          '    for char in text:',
+          '        if char.isalpha():',
+          '            base = ord("A") if char.isupper() else ord("a")',
+          '            result.append(chr((ord(char) - base + shift) % 26 + base))',
+          '        else:',
+          '            result.append(char)',
+          '    return "".join(result)',
+          '',
+          'def reverse_string(text):',
+          '    return text[::-1]',
+          '',
+          'def format_phone(number):',
+          '    import re',
+          '    cleaned = re.sub(r"\\D", "", number)',
+          '    if len(cleaned) == 9:',
+          '        return "+971 " + cleaned[:2] + " " + cleaned[2:5] + " " + cleaned[5:]',
+          '    return number',
+          '',
+          'def extract_numbers(text):',
+          '    import re',
+          '    return re.findall(r"\\d+", text)',
+          '',
+          'def hex_to_text(hex_str):',
+          '    try:',
+          '        return bytes.fromhex(hex_str).decode("utf-8")',
+          '    except Exception:',
+          '        return "ERROR: Invalid hex string"',
+          '',
+          'def decrypt_rot13(text):',
+          '    result = []',
+          '    for char in text:',
+          '        if char.isalpha():',
+          '            base = ord("A") if char.isupper() else ord("a")',
+          '            result.append(chr((ord(char) - base + 13) % 26 + base))',
+          '        else:',
+          '            result.append(char)',
+          '    return "".join(result)',
+          '',
+          'decode_base64 = base64_decode',
+          '',
+          'def run_code(code):',
+          '    capture = _Capture()',
+          '    old_out, old_err = sys.stdout, sys.stderr',
+          '    sys.stdout = capture',
+          '    sys.stderr = capture',
+          '    try:',
+          '        exec(code, globals())',
+          '    except Exception as e:',
+          '        capture.write("\\u274c " + type(e).__name__ + ": " + str(e) + "\\n")',
+          '    finally:',
+          '        sys.stdout = old_out',
+          '        sys.stderr = old_err',
+          '    return capture.getvalue()',
+          '',
+          'window.brython_run_code = run_code',
+        ].join('\n');
+
+        // Inject the Python bootstrap as a hidden script tag that brython() will find
+        var script = document.createElement('script');
+        script.type = 'text/python';
+        script.textContent = pySrc;
+        document.body.appendChild(script);
+
+        // Call brython() after window.load so CDN scripts are fully parsed
+        window.addEventListener('load', function () {
+          try {
+            brython();
+          } catch (e) {
+            console.error('Brython init failed:', e);
+          }
+        });
+      })();
+      </script>
     </body>
   </html>
   

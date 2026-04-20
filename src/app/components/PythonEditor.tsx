@@ -8,10 +8,23 @@ interface PythonEditorProps {
 }
 
 export function PythonEditor({ currentCase, onQueryExecuted }: PythonEditorProps) {
-  const [code, setCode] = useState('# UAEPD Decryption Software v2.1\n# Available decryption functions:\n# - base64_decode(text)\n# - caesar_cipher(text, shift)\n# - reverse_string(text)\n# - format_phone(number)\n# - extract_numbers(text)\n\n');
+  const [code, setCode] = useState('# UAEPD Decryption Software v2.1\n# Available decryption functions:\n# - base64_decode(text)\n# - caesar_cipher(text, shift)\n# - reverse_string(text)\n# - format_phone(number)\n# - extract_numbers(text)\n# - hex_to_text(hex_str)\n\n');
   const [output, setOutput] = useState<string[]>([]);
   const [history, setHistory] = useState<string[]>([]);
+  const [brythonReady, setBrythonReady] = useState(() => !!(window as any).brython_run_code);
   const outputRef = useRef<HTMLDivElement>(null);
+
+  // Poll until Brython's bootstrap has finished setting window.brython_run_code
+  useEffect(() => {
+    if (brythonReady) return;
+    const id = setInterval(() => {
+      if ((window as any).brython_run_code) {
+        setBrythonReady(true);
+        clearInterval(id);
+      }
+    }, 150);
+    return () => clearInterval(id);
+  }, [brythonReady]);
 
   useEffect(() => {
     if (outputRef.current) {
@@ -19,228 +32,39 @@ export function PythonEditor({ currentCase, onQueryExecuted }: PythonEditorProps
     }
   }, [output]);
 
-  // Python-like helper functions
-  const base64Decode = (text: string): string => {
-    try {
-      return atob(text);
-    } catch {
-      return 'ERROR: Invalid base64 string';
-    }
-  };
-
-  const caesarCipher = (text: string, shift: number): string => {
-    return text.split('').map(char => {
-      if (char.match(/[a-z]/i)) {
-        const code = char.charCodeAt(0);
-        const isUpperCase = code >= 65 && code <= 90;
-        const base = isUpperCase ? 65 : 97;
-        return String.fromCharCode((((code - base + shift) % 26) + 26) % 26 + base);
-      }
-      return char;
-    }).join('');
-  };
-
-  const reverseString = (text: string): string => {
-    return text.split('').reverse().join('');
-  };
-
-  const formatPhone = (number: string): string => {
-    const cleaned = number.replace(/\D/g, '');
-    if (cleaned.length === 9) {
-      return `+971 ${cleaned.slice(0, 2)} ${cleaned.slice(2, 5)} ${cleaned.slice(5)}`;
-    }
-    return number;
-  };
-
-  const extractNumbers = (text: string): string[] => {
-    return text.match(/\d+/g) || [];
-  };
-
-  const hexToText = (hex: string): string => {
-    try {
-      return hex.match(/.{1,2}/g)?.map(byte => String.fromCharCode(parseInt(byte, 16))).join('') || 'ERROR';
-    } catch {
-      return 'ERROR: Invalid hex string';
-    }
-  };
-
   const executePython = () => {
     const timestamp = new Date().toLocaleTimeString();
-    const newOutput = [`>>> [${timestamp}] Executing Python code...`, ''];
+    const runCode = (window as any).brython_run_code;
 
-    try {
-      setHistory([...history, code]);
-
-      // Parse and execute different Python-like commands
-      const lines = code.split('\n').filter(line => !line.trim().startsWith('#') && line.trim() !== '');
-      
-      if (lines.length === 0) {
-        newOutput.push('No code to execute.');
-        setOutput([...output, ...newOutput]);
-        return;
-      }
-
-      // Execute each line
-      lines.forEach(line => {
-        const trimmed = line.trim();
-        
-        // base64_decode()
-        if (trimmed.match(/base64_decode\(['"](.+)['"]\)/)) {
-          const match = trimmed.match(/base64_decode\(['"](.+)['"]\)/);
-          if (match) {
-            const result = base64Decode(match[1]);
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Output: ${result}`);
-            newOutput.push('');
-          }
-        }
-        // caesar_cipher()
-        else if (trimmed.match(/caesar_cipher\(['"](.+)['"],\s*(-?\d+)\)/)) {
-          const match = trimmed.match(/caesar_cipher\(['"](.+)['"],\s*(-?\d+)\)/);
-          if (match) {
-            const result = caesarCipher(match[1], parseInt(match[2]));
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Output: ${result}`);
-            newOutput.push('');
-          }
-        }
-        // reverse_string()
-        else if (trimmed.match(/reverse_string\(['"](.+)['"]\)/)) {
-          const match = trimmed.match(/reverse_string\(['"](.+)['"]\)/);
-          if (match) {
-            const result = reverseString(match[1]);
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Output: ${result}`);
-            newOutput.push('');
-          }
-        }
-        // format_phone()
-        else if (trimmed.match(/format_phone\(['"](.+)['"]\)/)) {
-          const match = trimmed.match(/format_phone\(['"](.+)['"]\)/);
-          if (match) {
-            const result = formatPhone(match[1]);
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Output: ${result}`);
-            newOutput.push('');
-          }
-        }
-        // extract_numbers()
-        else if (trimmed.match(/extract_numbers\(['"](.+)['"]\)/)) {
-          const match = trimmed.match(/extract_numbers\(['"](.+)['"]\)/);
-          if (match) {
-            const result = extractNumbers(match[1]);
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Output: [${result.join(', ')}]`);
-            newOutput.push('');
-          }
-        }
-        // hex_to_text()
-        else if (trimmed.match(/hex_to_text\(['"](.+)['"]\)/)) {
-          const match = trimmed.match(/hex_to_text\(['"](.+)['"]\)/);
-          if (match) {
-            const result = hexToText(match[1]);
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Output: ${result}`);
-            newOutput.push('');
-          }
-        }
-        // print() - validate proper quotes
-        else if (trimmed.startsWith('print(')) {
-          // Check if quotes are properly matched
-          const hasOpeningQuote = trimmed.includes('("') || trimmed.includes("('");
-          const hasClosingQuote = trimmed.includes('")') || trimmed.includes("')");
-          
-          // Check for mismatched quotes like print(hello world")
-          const quoteCount = (trimmed.match(/["']/g) || []).length;
-          
-          if (!hasOpeningQuote || !hasClosingQuote || quoteCount !== 2) {
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`❌ SyntaxError: Missing or mismatched quotes`);
-            newOutput.push(`   Correct format: print("your message")`);
-            newOutput.push('');
-          } else {
-            const match = trimmed.match(/print\(['"](.*?)['"]\)/);
-            if (match) {
-              newOutput.push(`>>> ${trimmed}`);
-              newOutput.push(match[1]);
-              newOutput.push('');
-            } else {
-              newOutput.push(`>>> ${trimmed}`);
-              newOutput.push(`❌ SyntaxError: Invalid print() syntax`);
-              newOutput.push(`   Correct format: print("your message")`);
-              newOutput.push('');
-            }
-          }
-        }
-        // Math operations
-        else if (trimmed.match(/^\d+\s*[\+\-\*\/]\s*\d+$/)) {
-          try {
-            // Safe math evaluation without eval
-            const mathMatch = trimmed.match(/^(\d+)\s*([\+\-\*\/])\s*(\d+)$/);
-            if (mathMatch) {
-              const a = parseFloat(mathMatch[1]);
-              const op = mathMatch[2];
-              const b = parseFloat(mathMatch[3]);
-              let result: number;
-              switch (op) {
-                case '+': result = a + b; break;
-                case '-': result = a - b; break;
-                case '*': result = a * b; break;
-                case '/': result = b !== 0 ? a / b : NaN; break;
-                default: result = NaN;
-              }
-              newOutput.push(`>>> ${trimmed}`);
-              newOutput.push(`Result: ${isNaN(result) ? 'ERROR: Division by zero' : result}`);
-              newOutput.push('');
-            }
-          } catch (e) {
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`ERROR: ${e}`);
-            newOutput.push('');
-          }
-        }
-        // len()
-        else if (trimmed.match(/len\(['"](.+)['"]\)/)) {
-          const match = trimmed.match(/len\(['"](.+)['"]\)/);
-          if (match) {
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Output: ${match[1].length}`);
-            newOutput.push('');
-          }
-        }
-        // Variable assignments
-        else if (trimmed.match(/^(\w+)\s*=\s*['"](.+)['"]/)) {
-          const match = trimmed.match(/^(\w+)\s*=\s*['"](.+)['"]/);
-          if (match) {
-            newOutput.push(`>>> ${trimmed}`);
-            newOutput.push(`Variable '${match[1]}' assigned`);
-            newOutput.push('');
-          }
-        }
-        else if (trimmed !== '') {
-          newOutput.push(`>>> ${trimmed}`);
-          newOutput.push(`❌ SyntaxError: Invalid syntax or command not recognized`);
-          newOutput.push(`   Check your spelling and quotes. Example: print("Hello")`);
-          newOutput.push('');
-        }
-      });
-
-      newOutput.push('✓ Execution completed');
-      
-    } catch (error) {
-      newOutput.push(`ERROR: ${error}`);
+    if (!runCode) {
+      setOutput(prev => [
+        ...prev,
+        `>>> [${timestamp}] ⚠️ Python runtime is still loading, please try again in a moment.`,
+        '',
+      ]);
+      return;
     }
 
-    setOutput([...output, ...newOutput]);
+    setHistory(prev => [...prev, code]);
+
+    const rawOutput: string = runCode(code);
+    const lines = rawOutput ? rawOutput.split('\n') : [];
+    // trim the trailing blank line that print() adds
+    if (lines.length > 0 && lines[lines.length - 1] === '') lines.pop();
+
+    setOutput(prev => [
+      ...prev,
+      `>>> [${timestamp}] Executing Python code...`,
+      '',
+      ...lines,
+      '',
+      '✓ Execution completed',
+      '',
+    ]);
   };
 
-  const clearOutput = () => {
-    setOutput([]);
-  };
-
-  const clearCode = () => {
-    setCode('');
-  };
+  const clearOutput = () => setOutput([]);
+  const clearCode = () => setCode('');
 
   return (
     <div className="flex flex-col h-full bg-[#1e1e1e] text-gray-100">
@@ -250,7 +74,7 @@ export function PythonEditor({ currentCase, onQueryExecuted }: PythonEditorProps
           <Code className="w-5 h-5" />
           <span className="font-bold">Decryption Software - UAEPD Cyber Division</span>
         </div>
-        <div className="text-xs opacity-90">Python 3.11.0</div>
+        <div className="text-xs opacity-90">{brythonReady ? 'Python 3.12 (Brython) ✓' : '⏳ Loading Python...'}</div>
       </div>
 
       {/* Code Editor */}
@@ -275,10 +99,11 @@ export function PythonEditor({ currentCase, onQueryExecuted }: PythonEditorProps
             <div className="bg-gray-800 px-3 py-2 flex items-center gap-2 border-t border-gray-700">
               <button
                 onClick={executePython}
-                className="window-95-button px-3 py-1 text-xs bg-green-600 text-white flex items-center gap-1"
+                disabled={!brythonReady}
+                className={`window-95-button px-3 py-1 text-xs flex items-center gap-1 ${brythonReady ? 'bg-green-600 text-white' : 'bg-gray-500 text-gray-300 cursor-not-allowed'}`}
               >
                 <Play className="w-3 h-3" />
-                Run (Ctrl+Enter)
+                {brythonReady ? 'Run (Ctrl+Enter)' : 'Loading...'}
               </button>
               <button
                 onClick={clearCode}
@@ -312,13 +137,13 @@ export function PythonEditor({ currentCase, onQueryExecuted }: PythonEditorProps
                   <div className="mt-4 text-xs">
                     <div className="text-yellow-400 mb-1">Available Functions:</div>
                     <div>• base64_decode("encoded_text")</div>
-                    <div>• caesar_cipher("text", shift_amount)</div>
+                    <div>• caesar_cipher("text", shift)</div>
                     <div>• reverse_string("text")</div>
                     <div>• format_phone("501234567")</div>
                     <div>• extract_numbers("ABC123XYZ456")</div>
                     <div>• hex_to_text("48656c6c6f")</div>
-                    <div>• len("text")</div>
-                    <div>• print("message")</div>
+                    <div>• decrypt_rot13("text")</div>
+                    <div>• Any valid Python 3 code</div>
                   </div>
                 </div>
               ) : (
