@@ -3,8 +3,6 @@
 
 A retro-styled detective puzzle game where you solve environmental crimes in the UAE using SQL queries, Python decryption, and database investigation tools.
 
-## Screenshots
-
 | | |
 |---|---|
 | ![Case Selection](images/screenshot-homescreen.png) | ![Boot Sequence](images/screenshot-boot.png) |
@@ -103,6 +101,8 @@ Solve environmental crime cases in the UAE by gathering evidence, querying datab
 5. **Cross-Reference Data** — Match evidence with database queries to identify the guilty party
 6. **Accuse** — Click "ACCUSE SUSPECT" in the taskbar, enter the suspect's name, and issue an arrest warrant
 7. **Get Feedback** — Receive audio briefing from your chief with results and hints for incorrect accusations
+
+| ![Case Briefing](images/screenshot-briefing.png) | ![Gameplay](images/screenshot-gameplay.png) |
 
 ### Pro Tips
 - Read the **Case Briefing** carefully — it outlines the investigation strategy
