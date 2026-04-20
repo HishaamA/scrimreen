@@ -3,6 +3,10 @@
 
 A retro-styled detective puzzle game where you solve environmental crimes in the UAE using SQL queries, Python decryption, and database investigation tools.
 
+> **Try it online:** [scrimreen.hishaam.me](http://scrimreen.hishaam.me/) — no download required.
+
+## Screenshots
+
 | | |
 |---|---|
 | ![Case Selection](images/screenshot-homescreen.png) | ![Boot Sequence](images/screenshot-boot.png) |
