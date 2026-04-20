@@ -43,6 +43,7 @@ function createWindow() {
     minWidth: 1024,
     minHeight: 700,
     title: 'SIMER DETECTIVE AGENCY',
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
