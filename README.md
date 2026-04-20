@@ -60,7 +60,12 @@ Outputs:
 2. Double-click to mount the disk image
 3. Drag the app icon to the Applications folder
 4. Eject the disk image
-5. Open Applications folder and launch **SIMER DETECTIVE AGENCY**
+5. Try to open **SIMER DETECTIVE AGENCY** — macOS will block it the first time
+6. Go to **System Settings → Privacy & Security** → scroll down
+7. Click **Open Anyway** next to the blocked app message
+8. Enter your password — the app will open
+
+> The app is not code-signed, so macOS shows a security warning on first launch. It is safe to open.
 
 ### Windows
 **Option 1: Installer (Recommended)**
