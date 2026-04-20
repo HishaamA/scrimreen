@@ -25,6 +25,11 @@
       "dist/audio/**/*",
       "dist/images/**/*"
     ],
+    "publish": {
+      "provider": "github",
+      "owner": "HishaamA",
+      "repo": "raunchy-detective-game"
+    },
     "mac": {
       "category": "public.app-category.games",
       "target": "dmg"
