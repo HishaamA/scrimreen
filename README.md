@@ -1,6 +1,7 @@
 
 # SIMER DETECTIVE AGENCY
 
+
 A retro-styled detective puzzle game where you solve environmental crimes in the UAE using SQL queries, Python decryption, and database investigation tools.
 
 > **Try it online:** [scrimreen.hishaam.me](http://scrimreen.hishaam.me/) — no download required.
